@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
-import './forget_password_screen.dart';
+import './forgot_password_screen.dart';
 
 class OtpScreen extends StatelessWidget {
   const OtpScreen({super.key});

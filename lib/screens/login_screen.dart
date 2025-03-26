@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:astro_ai_app/screens/sign_up_screen.dart';
+import 'package:astro_ai_app/screens/forgot_password_screen.dart';
 import 'package:http/http.dart' as http;
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:flutter/material.dart';
@@ -138,6 +139,28 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                 ),
               ),
+              SizedBox(height: 10),
+              SizedBox(height: 10),
+              Align(
+                alignment: Alignment.centerRight, // Aligns to the right
+                child: TextButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => ForgotPasswordPage()),
+                    );
+                  },
+                  child: Text(
+                    "Forgot Password?",
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.blue, // Matches the "Sign up here" link
+                    ),
+                  ),
+                ),
+              ),
+
               SizedBox(height: 20),
               _isLoading
                   ? CircularProgressIndicator()
@@ -185,7 +208,6 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                 ],
               ),
-
             ],
           ),
         ),

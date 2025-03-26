@@ -1,4 +1,4 @@
-import 'package:astro_ai_app/screens/forget_password_screen.dart';
+import 'package:astro_ai_app/screens/forgot_password_screen.dart';
 import 'package:flutter/material.dart';
 import './sign_up_screen.dart';
 import './login_screen.dart';
