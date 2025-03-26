@@ -166,7 +166,7 @@ class _WelcomePageState extends State<WelcomePage> {
                       onPressed: () {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => ForgotPasswordPage()),
+                          MaterialPageRoute(builder: (context) => ForgotPasswordScreen()),
                         );
                       },
                       child: Text(
