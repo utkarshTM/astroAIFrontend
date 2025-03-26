@@ -4,6 +4,7 @@ import 'package:http/http.dart' as http;
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:astro_ai_app/api_constants.dart';
 
 class LoginScreen extends StatefulWidget {
   @override
@@ -21,8 +22,8 @@ class _LoginScreenState extends State<LoginScreen> {
     scopes: ['email', 'profile'],
   );
 
-  final String backendAuthUrl = "https://7d73-2405-201-7001-51b3-28ca-7d2f-8e3c-a1f1.ngrok-free.app/api/auth/sso/google/callback";
-  final String apiUrl = "https://7d73-2405-201-7001-51b3-28ca-7d2f-8e3c-a1f1.ngrok-free.app/api/auth/login";
+  final String backendAuthUrl = ApiConstants.getAuthUrl("sso/google/callback");
+  final String apiUrl = ApiConstants.getAuthUrl("login");
 
   Future<void> _login() async {
     setState(() {

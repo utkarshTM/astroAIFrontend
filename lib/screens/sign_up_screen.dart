@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import './login_screen.dart';
+import 'package:astro_ai_app/api_constants.dart';
 
 class SignUpPage extends StatefulWidget {
   const SignUpPage({super.key});
@@ -29,7 +30,7 @@ class _SignUpPageState extends State<SignUpPage> {
     final String password = _passwordController.text.trim();
     final String refCode = _referralController.text.trim();
 
-    const String apiUrl = "https://7d73-2405-201-7001-51b3-28ca-7d2f-8e3c-a1f1.ngrok-free.app/api/auth/register";
+    final String apiUrl = ApiConstants.getAuthUrl("register");
 
     try {
       final response = await http.post(
