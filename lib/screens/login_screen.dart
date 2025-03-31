@@ -1,11 +1,13 @@
 import 'dart:convert';
 import 'package:astro_ai_app/screens/sign_up_screen.dart';
 import 'package:astro_ai_app/screens/forgot_password_screen.dart';
+import 'package:astro_ai_app/screens/user_details_form_screen.dart';
 import 'package:http/http.dart' as http;
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:astro_ai_app/api_constants.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginScreen extends StatefulWidget {
   @override
@@ -24,8 +26,7 @@ class _LoginScreenState extends State<LoginScreen> {
   );
 
   final String backendAuthUrl = ApiConstants.getAuthUrl("sso/google/callback");
-  final String apiUrl = ApiConstants.getAuthUrl("login");
-
+  final String apiUrl = "${ApiConstants.baseUrl}/api/auth/login";
   Future<void> _login() async {
     setState(() {
       _isLoading = true;
@@ -50,13 +51,31 @@ class _LoginScreenState extends State<LoginScreen> {
       );
 
       final responseData = jsonDecode(response.body);
+      print("Login Response: $responseData"); // Debug log
+
       if (response.statusCode == 200 && responseData["status"] == "success") {
+        // Extract token from the nested structure
+        final String accessToken = responseData["data"]["auth"];
+
+        if (accessToken.isEmpty) {
+          throw Exception("Access token is empty");
+        }
+
+        // Save the access token
+        await _saveAccessToken(accessToken);
+
         _showMessage("Login successful!");
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (context) => UserDetailsScreen()),
+        );
       } else {
-        _showMessage(responseData["message"] ?? "Login failed");
+        final errorMessage = responseData["message"] ?? "Login failed";
+        _showMessage(errorMessage);
       }
     } catch (error) {
-      _showMessage("Error connecting to the server");
+      print("Login Error: $error"); // Debug log
+      _showMessage("Error connecting to the server: ${error.toString()}");
     }
 
     setState(() {
@@ -86,14 +105,39 @@ class _LoginScreenState extends State<LoginScreen> {
         body: jsonEncode({"code": idToken}),
       );
 
+      final responseData = jsonDecode(response.body);
+      print("Google Login Response: $responseData"); // Debug log
+
       if (response.statusCode == 200) {
+        // Extract token from the nested structure
+        final String accessToken = responseData["data"]["auth"];
+
+        if (accessToken.isEmpty) {
+          throw Exception("Access token is empty");
+        }
+
+        // Save the access token
+        await _saveAccessToken(accessToken);
+
         _showMessage("Login successful!");
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (context) => UserDetailsScreen()),
+        );
       } else {
-        _showMessage("Google login failed");
+        final errorMessage = responseData["message"] ?? "Google login failed";
+        _showMessage(errorMessage);
       }
     } catch (error) {
-      _showMessage("Error: $error");
+      print("Google Login Error: $error"); // Debug log
+      _showMessage("Error: ${error.toString()}");
     }
+  }
+
+  Future<void> _saveAccessToken(String token) async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setString('access_token', token);
+    print("Access token saved successfully");
   }
 
   void _showMessage(String message) {
@@ -142,7 +186,7 @@ class _LoginScreenState extends State<LoginScreen> {
               SizedBox(height: 10),
               SizedBox(height: 10),
               Align(
-                alignment: Alignment.centerRight, // Aligns to the right
+                alignment: Alignment.centerRight,
                 child: TextButton(
                   onPressed: () {
                     Navigator.push(
@@ -155,7 +199,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     style: TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.bold,
-                      color: Colors.blue, // Matches the "Sign up here" link
+                      color: Colors.blue,
                     ),
                   ),
                 ),

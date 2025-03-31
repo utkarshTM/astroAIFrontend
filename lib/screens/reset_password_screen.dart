@@ -31,8 +31,9 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
       _errorMessage = null;
     });
 
-    final String apiUrl = ApiConstants.getAuthUrl("reset-password");
+    // final String apiUrl = ApiConstants.getAuthUrl("reset-password");
 
+    final String apiUrl = "${ApiConstants.baseUrl}/api/auth/reset-password";
     try {
       final response = await http.post(
         Uri.parse(apiUrl),
@@ -40,7 +41,7 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
         body: jsonEncode({
           "signature": widget.signature,
           "password": _passwordController.text.trim(),
-          "password_confirmation": _confirmPasswordController.text.trim(), // ✅ Ensure this is included
+          "password_confirmation": _confirmPasswordController.text.trim(),
         }),
       );
 

@@ -1,5 +1,5 @@
 class ApiConstants {
-  static const String baseUrl = "https://0f9f-2405-201-7001-51b3-617e-b686-b09f-aa07.ngrok-free.app";
+  static const String baseUrl = "https://398d-2401-4900-c8f-1663-10fd-bff5-d095-a183.ngrok-free.app";
 
   static String getAuthUrl(String endpoint) {
     return "$baseUrl/api/auth/$endpoint";
