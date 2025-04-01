@@ -5,6 +5,7 @@ import './login_screen.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:astro_ai_app/api_constants.dart';
 import './birth_detail_form.dart';
+import './chat_screen.dart';
 
 class SignUpPage extends StatefulWidget {
   const SignUpPage({super.key});
@@ -192,7 +193,7 @@ class _SignUpPageState extends State<SignUpPage> {
                                   onPressed: () {
                                     Navigator.push(
                                       context,
-                                      MaterialPageRoute(builder: (context) => BirthDetailsScreen()),
+                                      MaterialPageRoute(builder: (context) => ChatScreen()),
                                     );
                                   },
                                 ),

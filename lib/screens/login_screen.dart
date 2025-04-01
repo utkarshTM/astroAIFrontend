@@ -214,6 +214,11 @@ class _LoginScreenState extends State<LoginScreen> {
                       icon: FaIcon(FontAwesomeIcons.google, size: 40, color: Colors.red),
                       onPressed: _signInWithGoogle,
                     ),
+                    SizedBox(width: 10),
+                    IconButton(
+                      icon: FaIcon(FontAwesomeIcons.facebook, size: 40, color: Colors.blue),
+                      onPressed: () {},
+                    ),
                   ],
                 ),
                 SizedBox(height: 20),
