@@ -1,8 +1,8 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:astro_ai_app/api_constants.dart';
-import 'package:astro_ai_app/screens/login_screen.dart';
+import 'package:astro_ai_app/core/constants/api_constants.dart';
+import 'package:astro_ai_app/core/features/auth/screens/login_screen.dart';
 
 class ResetPasswordScreen extends StatefulWidget {
   final String signature;

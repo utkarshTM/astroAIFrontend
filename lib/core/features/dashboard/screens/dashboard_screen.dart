@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:astro_ai_app/screens/edit_user_details_screen.dart';
+import 'package:astro_ai_app/core/features/profile/screens/edit_user_details_screen.dart';
 
 class DashboardScreen extends StatelessWidget {
   @override

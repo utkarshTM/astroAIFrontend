@@ -1,9 +1,9 @@
 import 'dart:async';
 import 'dart:convert';
-import 'package:astro_ai_app/screens/reset_password_screen.dart';
+import 'package:astro_ai_app/core/features/auth/screens/reset_password_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:astro_ai_app/api_constants.dart';
+import 'package:astro_ai_app/core/constants/api_constants.dart';
 
 class ForgotPasswordScreen extends StatefulWidget {
   @override

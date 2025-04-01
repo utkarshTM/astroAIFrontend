@@ -1,12 +1,12 @@
 import 'dart:convert';
-import 'package:astro_ai_app/screens/sign_up_screen.dart';
-import 'package:astro_ai_app/screens/forgot_password_screen.dart';
-import 'package:astro_ai_app/screens/user_details_form_screen.dart';
+import 'package:astro_ai_app/core/features/auth/screens/forgot_password_screen.dart';
+import 'package:astro_ai_app/core/features/auth/screens/sign_up_screen.dart';
+import 'package:astro_ai_app/core/features/profile/screens/user_details_form_screen.dart';
 import 'package:http/http.dart' as http;
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:astro_ai_app/api_constants.dart';
+import 'package:astro_ai_app/core/constants/api_constants.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginScreen extends StatefulWidget {

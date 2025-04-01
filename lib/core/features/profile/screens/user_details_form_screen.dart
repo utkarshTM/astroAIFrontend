@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
-import 'package:astro_ai_app/api_constants.dart';
+import 'package:astro_ai_app/core/constants/api_constants.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:astro_ai_app/screens/dashboard_screen.dart';
+import 'package:astro_ai_app/core/features/dashboard/screens/dashboard_screen.dart';
 
 class UserDetailsScreen extends StatefulWidget {
   @override

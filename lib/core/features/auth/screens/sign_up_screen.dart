@@ -1,8 +1,8 @@
+import 'package:astro_ai_app/core/features/auth/screens/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
-import './login_screen.dart';
-import 'package:astro_ai_app/api_constants.dart';
+import 'package:astro_ai_app/core/constants/api_constants.dart';
 
 class SignUpPage extends StatefulWidget {
   const SignUpPage({super.key});
