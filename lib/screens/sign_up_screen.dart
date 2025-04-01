@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import './login_screen.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:astro_ai_app/api_constants.dart';
+import './birth_detail_form.dart';
 
 class SignUpPage extends StatefulWidget {
   const SignUpPage({super.key});
@@ -87,15 +89,21 @@ class _SignUpPageState extends State<SignUpPage> {
           SingleChildScrollView(
             child: Column(
               children: [
-                SizedBox(height: 60),
+                //SizedBox(height: 60),
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: 20),
                   child: Column(
                     children: [
+                      SizedBox(height: 100),
+                      Image.asset(
+                        'assets/logo.png',
+                        height: 200,
+                      ),
+                      SizedBox(height: 50),
                       Text(
                         'Create an Account',
                         textAlign: TextAlign.center,
-                        style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                        style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
                       ),
                       SizedBox(height: 20),
                       Form(
@@ -155,11 +163,11 @@ class _SignUpPageState extends State<SignUpPage> {
                             ),
                             SizedBox(height: 24.0),
                             SizedBox(
-                              width: double.infinity,
+                              width: 130,
                               child: ElevatedButton(
                                 onPressed: _isLoading ? null : _signUp,
                                 style: ElevatedButton.styleFrom(
-                                  backgroundColor: Colors.orangeAccent,
+                                  backgroundColor: Colors.orange,
                                   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
                                   padding: EdgeInsets.symmetric(vertical: 14),
                                 ),
@@ -168,20 +176,41 @@ class _SignUpPageState extends State<SignUpPage> {
                                     : Text('REGISTER', style: TextStyle(fontSize: 16, color: Colors.white)),
                               ),
                             ),
+                            SizedBox(height: 20),
+                            Text("Or sign up with", style: TextStyle(fontSize: 16)),
+                            SizedBox(height: 10),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                IconButton(
+                                  icon: FaIcon(FontAwesomeIcons.google, size: 40, color: Colors.red),
+                                  onPressed: () {},
+                                ),
+                                SizedBox(width: 20),
+                                IconButton(
+                                  icon: FaIcon(FontAwesomeIcons.facebook, size: 40, color: Colors.blue),
+                                  onPressed: () {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(builder: (context) => BirthDetailsScreen()),
+                                    );
+                                  },
+                                ),
+                              ],
+                            ),
                             SizedBox(height: 16),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                GestureDetector(
-                                  onTap: () {
+                                Text("Already have an account?",style: TextStyle(fontSize: 16)),
+                                TextButton(
+                                  onPressed: () {
                                     Navigator.push(
                                       context,
                                       MaterialPageRoute(builder: (context) => LoginScreen()),
                                     );
                                   },
-                                  child: Text('Sign in here',
-                                      style: TextStyle(
-                                          color: Colors.orangeAccent, fontWeight: FontWeight.bold)),
+                                  child: Text('Sign in here', style: TextStyle(color:Colors.blue,fontSize: 16,fontWeight: FontWeight.bold)),
                                 ),
                               ],
                             ),

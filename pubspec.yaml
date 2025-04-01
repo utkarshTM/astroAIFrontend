@@ -33,6 +33,7 @@ dependencies:
   font_awesome_flutter: ^10.8.0
 
 
+
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.8
@@ -41,6 +42,8 @@ dependencies:
   google_sign_in: ^6.3.0
   intl_phone_field: ^3.2.0
   flutter_otp_text_field: ^1.5.1+1
+  intl: ^0.18.0
+  google_sign_in_android: ^6.2.0
 
 dev_dependencies:
   flutter_test:
@@ -66,6 +69,8 @@ flutter:
 
   assets:
     - assets/astrology-background.webp
+    - assets/welcome.png
+    - assets/logo.png
 
   # To add assets to your application, add an assets section, like this:
   # assets:

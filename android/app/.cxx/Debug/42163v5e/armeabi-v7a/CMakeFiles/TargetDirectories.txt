@@ -1,0 +1,2 @@
+D:/flutter git/astroAIFrontend/android/app/.cxx/Debug/42163v5e/armeabi-v7a/CMakeFiles/edit_cache.dir
+D:/flutter git/astroAIFrontend/android/app/.cxx/Debug/42163v5e/armeabi-v7a/CMakeFiles/rebuild_cache.dir
