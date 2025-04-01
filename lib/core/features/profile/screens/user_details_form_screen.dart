@@ -142,7 +142,7 @@ class _UserDetailsScreenState extends State<UserDetailsScreen> {
               SizedBox(height: 25),
               Center(
                 child: Text(
-                  'Share Birth Details',
+                  'Share Personal Details',
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                 ),
               ),

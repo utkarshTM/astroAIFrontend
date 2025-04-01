@@ -1,144 +1,139 @@
 import 'package:flutter/material.dart';
-import 'package:astro_ai_app/core/features/profile/screens/edit_user_details_screen.dart';
+import 'package:astro_ai_app/core/widgets/app_header.dart';
+import 'package:astro_ai_app/core/widgets/app_drawer.dart';
+import 'package:astro_ai_app/core/widgets/chat_card.dart';
+import 'package:astro_ai_app/core/widgets/horoscope_card.dart';
+import 'package:astro_ai_app/core/widgets/matchmaking_card.dart';
+import 'package:astro_ai_app/core/services/profile_service.dart';
 
-class DashboardScreen extends StatelessWidget {
+class DashboardScreen extends StatefulWidget {
+  @override
+  _DashboardScreenState createState() => _DashboardScreenState();
+}
+
+class _DashboardScreenState extends State<DashboardScreen> {
+  String? _firstName;
+  bool _isLoading = true;
+  String _greeting = 'Hello';
+
+  @override
+  void initState() {
+    super.initState();
+    _loadUserProfile();
+    _setGreeting();
+  }
+
+  void _setGreeting() {
+    final hour = DateTime.now().hour;
+    setState(() {
+      if (hour < 12) {
+        _greeting = 'Good Morning';
+      } else if (hour < 17) {
+        _greeting = 'Good Afternoon';
+      } else {
+        _greeting = 'Good Evening';
+      }
+    });
+  }
+
+  Future<void> _loadUserProfile() async {
+    try {
+      final profile = await ProfileService.getProfile();
+      if (mounted) {
+        setState(() {
+          _firstName = profile?['name']?.toString().split(' ').first;
+          _isLoading = false;
+        });
+      }
+    } catch (e) {
+      if (mounted) {
+        setState(() => _isLoading = false);
+      }
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
+    final isTablet = MediaQuery.of(context).size.shortestSide > 600;
+
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Astro AI'),
-        centerTitle: true,
-        elevation: 0,
-        backgroundColor: Colors.orange,
-        leading: Builder(
-          builder: (context) => IconButton(
-            icon: Icon(Icons.menu, color: Colors.white),
-            onPressed: () => Scaffold.of(context).openDrawer(),
-          ),
-        ),
-        actions: [
-          IconButton(
-            icon: Icon(Icons.brightness_4, color: Colors.white),
-            onPressed: () {
-              // Toggle dark/light mode
-            },
-          ),
-          IconButton(
-            icon: Icon(Icons.notifications, color: Colors.white),
-            onPressed: () {
-              // Handle notifications
-            },
-          ),
-          IconButton(
-            icon: Icon(Icons.person, color: Colors.white),
-            onPressed: () {
-              // Navigate to EditUserDetailsScreen when profile icon is pressed
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => EditUserDetailsScreen()),
-              );
-            },
-          ),
-        ],
-      ),
-      drawer: Drawer(
-        child: ListView(
-          padding: EdgeInsets.zero,
-          children: [
-            DrawerHeader(
-              decoration: BoxDecoration(
-                color: Colors.orange,
-              ),
-              child: Text(
-                'Astro AI',
+      appBar: AppHeader(),
+      drawer: AppDrawer(),
+      body: SafeArea(
+        child: SingleChildScrollView(
+          padding: EdgeInsets.all(isTablet ? 24 : 16),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              _buildGreetingRow(isTablet),
+              SizedBox(height: isTablet ? 12 : 8),
+              Text(
+                'The universe has aligned to bring you here today',
                 style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 24,
+                  fontSize: isTablet ? 18 : 14,
+                  color: Colors.grey[600],
                 ),
               ),
-            ),
-            ListTile(
-              leading: Icon(Icons.home),
-              title: Text('Home'),
-              onTap: () {
-                Navigator.pop(context);
-              },
-            ),
-            ListTile(
-              leading: Icon(Icons.chat),
-              title: Text('New Chat'),
-              onTap: () {
-                Navigator.pop(context);
-              },
-            ),
-            ListTile(
-              leading: Icon(Icons.star),
-              title: Text('Horoscope'),
-              onTap: () {
-                Navigator.pop(context);
-              },
-            ),
-            ListTile(
-              leading: Icon(Icons.language),
-              title: Text('Change Language'),
-              onTap: () {
-                Navigator.pop(context);
-              },
-            ),
-            ListTile(
-              leading: Icon(Icons.feedback),
-              title: Text('Feedback'),
-              onTap: () {
-                Navigator.pop(context);
-              },
-            ),
-            ListTile(
-              leading: Icon(Icons.share),
-              title: Text('Share App'),
-              onTap: () {
-                Navigator.pop(context);
-              },
-            ),
-            ListTile(
-              leading: Icon(Icons.star_rate),
-              title: Text('Rate App'),
-              onTap: () {
-                Navigator.pop(context);
-              },
-            ),
-            ListTile(
-              leading: Icon(Icons.info),
-              title: Text('About Us'),
-              onTap: () {
-                Navigator.pop(context);
-              },
-            ),
-          ],
+              SizedBox(height: isTablet ? 28 : 24),
+              _buildFeatureGrid(isTablet),
+            ],
+          ),
         ),
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(
-              'Hello!',
+    );
+  }
+
+  Widget _buildGreetingRow(bool isTablet) {
+    if (_isLoading) {
+      return SizedBox(
+        height: isTablet ? 28 : 24,
+        child: Center(child: CircularProgressIndicator()),
+      );
+    }
+
+    return RichText(
+      text: TextSpan(
+        style: TextStyle(
+          fontSize: isTablet ? 28 : 24,
+          fontWeight: FontWeight.bold,
+          color: Colors.orange,
+        ),
+        children: [
+          TextSpan(text: _greeting),
+          if (_firstName != null) ...[
+            TextSpan(text: ', '),
+            TextSpan(
+              text: _firstName!,
               style: TextStyle(
-                fontSize: 32,
                 fontWeight: FontWeight.bold,
-                color: Colors.orange,
-              ),
-            ),
-            SizedBox(height: 16),
-            Text(
-              'Welcome to your Astro AI Dashboard',
-              style: TextStyle(
-                fontSize: 18,
-                color: Colors.grey[600],
               ),
             ),
           ],
-        ),
+        ],
       ),
+    );
+  }
+
+  Widget _buildFeatureGrid(bool isTablet) {
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        return GridView.count(
+          crossAxisCount: isTablet ? 3 : 2,
+          crossAxisSpacing: isTablet ? 20 : 16,
+          mainAxisSpacing: isTablet ? 20 : 16,
+          shrinkWrap: true,
+          physics: NeverScrollableScrollPhysics(),
+          childAspectRatio: isTablet ? 1.0 : 0.9,
+          children: [
+            HoroscopeCard(onTap: () => print('Horoscope tapped')),
+            ChatCard(onTap: () => print('Chat tapped')),
+            MatchmakingCard(onTap: () => print('Matchmaking tapped')),
+            if (isTablet) ...[
+              // Additional cards for tablet layout
+            ],
+          ],
+        );
+      },
     );
   }
 }
