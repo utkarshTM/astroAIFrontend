@@ -32,7 +32,7 @@ class _SignUpPageState extends State<SignUpPage> {
     final String password = _passwordController.text.trim();
     final String refCode = _referralController.text.trim();
 
-    final String apiUrl = ApiConstants.getAuthUrl("register");
+    final String apiUrl = "${ApiConstants.baseUrl}/api/auth/register";
 
     try {
       final response = await http.post(

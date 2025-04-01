@@ -44,6 +44,7 @@ dependencies:
   flutter_otp_text_field: ^1.5.1+1
   intl: ^0.18.0
   google_sign_in_android: ^6.2.0
+  shared_preferences:
 
 dev_dependencies:
   flutter_test:
