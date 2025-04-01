@@ -16,7 +16,7 @@ class WelcomePage extends StatefulWidget {
 }
 
 class _WelcomePageState extends State<WelcomePage> {
-  int _currentIndex = 0; // Track selected dot
+  int _currentIndex = 0;
 
   void _navigateToPage(int index, BuildContext context) {
     setState(() {

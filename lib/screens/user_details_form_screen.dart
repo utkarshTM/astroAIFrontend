@@ -4,6 +4,7 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:astro_ai_app/api_constants.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:astro_ai_app/screens/dashboard_screen.dart';
 
 class UserDetailsScreen extends StatefulWidget {
   @override
@@ -101,13 +102,12 @@ class _UserDetailsScreenState extends State<UserDetailsScreen> {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(content: Text("Profile saved successfully!")),
         );
-        // You might want to navigate to another screen here
+        // Navigate to dashboard after successful submission
+        _navigateToDashboard();
       } else if (response.statusCode == 401) {
-        // Token might be expired
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(content: Text("Session expired. Please log in again.")),
         );
-        // Optionally navigate back to login screen
       } else {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(content: Text("Error: ${responseData['message'] ?? 'Unknown error'}")),
@@ -119,6 +119,13 @@ class _UserDetailsScreenState extends State<UserDetailsScreen> {
         SnackBar(content: Text("Failed to connect to the server.")),
       );
     }
+  }
+
+  void _navigateToDashboard() {
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(builder: (context) => DashboardScreen()),
+    );
   }
 
   @override
@@ -233,11 +240,31 @@ class _UserDetailsScreenState extends State<UserDetailsScreen> {
                   ),
                   onPressed: _submitProfile,
                   child: Text(
-                    'NEXT',
+                    'SUBMIT',
                     style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.white),
                   ),
                 ),
               ),
+              SizedBox(height: 10),
+              Align(
+                alignment: Alignment.centerRight,
+                child: TextButton(
+                  onPressed: _navigateToDashboard,
+                  style: TextButton.styleFrom(
+                    padding: EdgeInsets.zero,
+                    tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                  ),
+                  child: Text(
+                    'Skip',
+                    style: TextStyle(
+                      fontSize: 16,
+                      decoration: TextDecoration.underline,
+                      color: Colors.orange,
+                    ),
+                  ),
+                ),
+              ),
+              SizedBox(height: 20),
             ],
           ),
         ),
