@@ -9,7 +9,7 @@ class AuthProvider extends ChangeNotifier {
     _isLoading = true;
     notifyListeners();
 
-    await Future.delayed(const Duration(seconds: 2)); // Simulating API Call
+    await Future.delayed(const Duration(seconds: 2));
 
     _isLoading = false;
     notifyListeners();

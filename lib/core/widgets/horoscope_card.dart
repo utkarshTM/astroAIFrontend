@@ -1,3 +1,4 @@
+import 'package:astro_ai_app/core/features/horoscope/screen/horoscope_list_screen.dart';
 import 'package:flutter/material.dart';
 
 class HoroscopeCard extends StatelessWidget {
@@ -18,7 +19,14 @@ class HoroscopeCard extends StatelessWidget {
             borderRadius: BorderRadius.circular(12),
           ),
           child: InkWell(
-            onTap: onTap,
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const HoroscopeListScreen(),
+                ),
+              );
+            },
             borderRadius: BorderRadius.circular(12),
             child: Padding(
               padding: EdgeInsets.all(isTablet ? 24 : 16),

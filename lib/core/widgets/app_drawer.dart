@@ -1,3 +1,4 @@
+import 'package:astro_ai_app/core/features/horoscope/screen/horoscope_list_screen.dart';
 import 'package:flutter/material.dart';
 
 class AppDrawer extends StatelessWidget {
@@ -32,7 +33,14 @@ class AppDrawer extends StatelessWidget {
           _buildDrawerItem(
             icon: Icons.star,
             title: 'Horoscope',
-            onTap: () => Navigator.pop(context),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const HoroscopeListScreen(),
+                ),
+              );
+            },
           ),
           _buildDrawerItem(
             icon: Icons.language,
