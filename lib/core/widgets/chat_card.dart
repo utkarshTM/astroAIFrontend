@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:astro_ai_app/core/features/chatWithAi/screens/chat_screen.dart';
+
 
 class ChatCard extends StatelessWidget {
   final VoidCallback onTap;
@@ -18,7 +20,14 @@ class ChatCard extends StatelessWidget {
             borderRadius: BorderRadius.circular(12),
           ),
           child: InkWell(
-            onTap: onTap,
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const AstroChatScreen(),
+                ),
+              );
+            },
             borderRadius: BorderRadius.circular(12),
             child: Padding(
               padding: EdgeInsets.all(isTablet ? 24 : 16),

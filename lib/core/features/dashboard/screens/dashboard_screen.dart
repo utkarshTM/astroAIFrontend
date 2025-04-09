@@ -1,3 +1,4 @@
+import 'package:astro_ai_app/styles/app_Styles.dart';
 import 'package:flutter/material.dart';
 import 'package:astro_ai_app/core/widgets/app_header.dart';
 import 'package:astro_ai_app/core/widgets/app_drawer.dart';
@@ -57,13 +58,14 @@ class _DashboardScreenState extends State<DashboardScreen> {
     final isTablet = MediaQuery.of(context).size.shortestSide > 600;
 
     return Scaffold(
+      backgroundColor: AppColors.primary,
       appBar: AppHeader(),
       drawer: AppDrawer(),
       body: SafeArea(
         child: SingleChildScrollView(
           padding: EdgeInsets.all(isTablet ? 24 : 16),
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               _buildGreetingRow(isTablet),
               SizedBox(height: isTablet ? 12 : 8),
@@ -71,7 +73,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                 'The universe has aligned to bring you here today',
                 style: TextStyle(
                   fontSize: isTablet ? 18 : 14,
-                  color: Colors.grey[600],
+                  color: Colors.black,
                 ),
               ),
               SizedBox(height: isTablet ? 28 : 24),
@@ -96,7 +98,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
         style: TextStyle(
           fontSize: isTablet ? 28 : 24,
           fontWeight: FontWeight.bold,
-          color: Colors.orange,
+          color: AppColors.bhagwa_Saffron,
         ),
         children: [
           TextSpan(text: _greeting),

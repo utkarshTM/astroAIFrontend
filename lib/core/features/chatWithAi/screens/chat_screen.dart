@@ -1,0 +1,43 @@
+// import 'package:flutter/material.dart';
+// import '../../../widgets/astro_chat_widget.dart';
+//
+// class AstroChatScreen extends StatelessWidget {
+//   const AstroChatScreen({super.key});
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       body: AstroChatWidget(
+//         botName: 'AstroBot',
+//         avatarAsset: 'assets/astrologer.png',
+//         initialMessages: [
+//           {'sender': 'ai', 'text': 'Hi, I\'m AstroBot! 🌙 Ask me anything...'},
+//         ],
+//       ),
+//     );
+//   }
+// }
+
+
+import 'package:flutter/material.dart';
+import '../../../widgets/astro_chat_widget.dart';
+
+class AstroChatScreen extends StatelessWidget {
+  const AstroChatScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Padding(
+        padding: const EdgeInsets.only(top: 40), // <-- Top margin added here
+        child: AstroChatWidget(
+          botName: 'AstroBot',
+          avatarAsset: 'assets/logo.png',
+          initialMessages: [
+            {'sender': 'ai', 'text': 'Hi, I\'m AstroBot! 🌙 Ask me anything...'},
+          ],
+        ),
+      ),
+    );
+  }
+}

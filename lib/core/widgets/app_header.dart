@@ -1,5 +1,7 @@
 import 'package:astro_ai_app/core/features/profile/screens/edit_user_details_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:astro_ai_app/core/features/notification/screens/notification_screen.dart';
+import 'package:astro_ai_app/styles/app_Styles.dart';
 
 class AppHeader extends StatelessWidget implements PreferredSizeWidget {
   @override
@@ -8,10 +10,12 @@ class AppHeader extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      title: Text('Astro AI'),
+      title: Text('Astro AI',
+      style: AppTextStyles.appBarTitle,
+      ),
       centerTitle: true,
       elevation: 0,
-      backgroundColor: Colors.orange,
+      backgroundColor: AppColors.bhagwa_Saffron,
       leading: Builder(
         builder: (context) => IconButton(
           icon: Icon(Icons.menu, color: Colors.white),
@@ -29,6 +33,10 @@ class AppHeader extends StatelessWidget implements PreferredSizeWidget {
           icon: Icon(Icons.notifications, color: Colors.white),
           onPressed: () {
             // Handle notifications
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const NotificationScreen()),
+            );
           },
         ),
         IconButton(

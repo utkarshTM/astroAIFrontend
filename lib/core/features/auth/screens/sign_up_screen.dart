@@ -4,6 +4,7 @@ import 'dart:convert';
 import './login_screen.dart';
 import 'package:astro_ai_app/core/constants/api_constants.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:astro_ai_app/styles/app_Styles.dart';
 
 class SignUpPage extends StatefulWidget {
   const SignUpPage({super.key});
@@ -102,7 +103,8 @@ class _SignUpPageState extends State<SignUpPage> {
                       Text(
                         'Create an Account',
                         textAlign: TextAlign.center,
-                        style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
+                        style: AppTextStyles.pageTitle,
+                        //style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
                       ),
                       SizedBox(height: 20),
                       Form(
@@ -113,7 +115,7 @@ class _SignUpPageState extends State<SignUpPage> {
                               controller: _emailController,
                               decoration: InputDecoration(
                                 labelText: 'Email',
-                                prefixIcon: Icon(Icons.email, color: Colors.orangeAccent),
+                                prefixIcon: Icon(Icons.email, color: AppColors.bhagwa_Saffron),
                                 border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
                               ),
                               keyboardType: TextInputType.emailAddress,
@@ -129,11 +131,11 @@ class _SignUpPageState extends State<SignUpPage> {
                               controller: _passwordController,
                               decoration: InputDecoration(
                                 labelText: 'Password',
-                                prefixIcon: Icon(Icons.lock, color: Colors.orangeAccent),
+                                prefixIcon: Icon(Icons.lock, color: AppColors.bhagwa_Saffron),
                                 suffixIcon: IconButton(
                                   icon: Icon(
                                     _isPasswordVisible ? Icons.visibility : Icons.visibility_off,
-                                    color: Colors.orangeAccent,
+                                    color: AppColors.bhagwa_Saffron,
                                   ),
                                   onPressed: () {
                                     setState(() {
@@ -156,7 +158,7 @@ class _SignUpPageState extends State<SignUpPage> {
                               controller: _referralController,
                               decoration: InputDecoration(
                                 labelText: 'Referral Code (Optional)',
-                                prefixIcon: Icon(Icons.redeem, color: Colors.orangeAccent),
+                                prefixIcon: Icon(Icons.redeem, color: AppColors.bhagwa_Saffron),
                                 border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
                               ),
                             ),
@@ -166,13 +168,13 @@ class _SignUpPageState extends State<SignUpPage> {
                               child: ElevatedButton(
                                 onPressed: _isLoading ? null : _signUp,
                                 style: ElevatedButton.styleFrom(
-                                  backgroundColor: Colors.orange,
+                                  backgroundColor: AppColors.bhagwa_Saffron,
                                   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
                                   padding: EdgeInsets.symmetric(vertical: 14),
-                                ),
-                                child: _isLoading
-                                    ? CircularProgressIndicator(color: Colors.white)
-                                    : Text('REGISTER', style: TextStyle(fontSize: 16, color: Colors.white)),
+                                ), child: _isLoading ? CircularProgressIndicator(color: AppColors.primary)
+                                    : Text('REGISTER',
+                                        style: TextStyle(fontSize: 16, color: AppColors.primary)
+                                    ),
                               ),
                             ),
                             SizedBox(height: 20),
@@ -209,7 +211,10 @@ class _SignUpPageState extends State<SignUpPage> {
                                       MaterialPageRoute(builder: (context) => LoginScreen()),
                                     );
                                   },
-                                  child: Text('Sign in here', style: TextStyle(color:Colors.blue,fontSize: 16,fontWeight: FontWeight.bold)),
+                                  child: Text('Sign in here',
+                                        style: AppTextStyles.bodyText16,
+                                      //style: TextStyle(color:Colors.blue,fontSize: 16,fontWeight: FontWeight.bold)
+                                  ),
                                 ),
                               ],
                             ),
@@ -325,7 +330,7 @@ class _SignUpPageState extends State<SignUpPage> {
 //                       Text(
 //                         'Create an Account',
 //                         textAlign: TextAlign.center,
-//                         style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+//                         styles: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
 //                       ),
 //                       SizedBox(height: 20),
 //                       Form(
@@ -388,14 +393,14 @@ class _SignUpPageState extends State<SignUpPage> {
 //                               width: double.infinity,
 //                               child: ElevatedButton(
 //                                 onPressed: _isLoading ? null : _signUp,
-//                                 style: ElevatedButton.styleFrom(
+//                                 styles: ElevatedButton.styleFrom(
 //                                   backgroundColor: Colors.orangeAccent,
 //                                   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
 //                                   padding: EdgeInsets.symmetric(vertical: 14),
 //                                 ),
 //                                 child: _isLoading
 //                                     ? CircularProgressIndicator(color: Colors.white)
-//                                     : Text('REGISTER', style: TextStyle(fontSize: 16, color: Colors.white)),
+//                                     : Text('REGISTER', styles: TextStyle(fontSize: 16, color: Colors.white)),
 //                               ),
 //                             ),
 //                             SizedBox(height: 16),
@@ -410,7 +415,7 @@ class _SignUpPageState extends State<SignUpPage> {
 //                                     );
 //                                   },
 //                                   child: Text('Sign in here',
-//                                       style: TextStyle(
+//                                       styles: TextStyle(
 //                                           color: Colors.orangeAccent, fontWeight: FontWeight.bold)),
 //                                 ),
 //                               ],

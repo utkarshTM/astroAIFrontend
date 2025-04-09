@@ -141,11 +141,21 @@ class _UserDetailsScreenState extends State<UserDetailsScreen> {
             children: [
               SizedBox(height: 25),
               Center(
+                child: Image.asset(
+                  'assets/logo.png', // <-- Replace with your image asset path
+                  height: 150,
+                  fit: BoxFit.contain,
+                ),
+              ),
+              SizedBox(height: 10),
+              Center(
                 child: Text(
                   'Share Personal Details',
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                 ),
               ),
+              //SizedBox(height: 25),
+
               SizedBox(height: 10),
               TextFormField(
                 controller: _nameController,

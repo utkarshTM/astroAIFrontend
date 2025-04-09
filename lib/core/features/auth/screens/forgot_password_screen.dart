@@ -4,6 +4,7 @@ import 'package:astro_ai_app/core/features/auth/screens/reset_password_screen.da
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:astro_ai_app/core/constants/api_constants.dart';
+import 'package:astro_ai_app/styles/app_Styles.dart';
 
 class ForgotPasswordScreen extends StatefulWidget {
   @override
@@ -166,14 +167,17 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                   height: 200,
                 ),
                 SizedBox(height: 20),
-                Text("Enter your email for verification", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+                Text("Enter your email",
+                    style: AppTextStyles.pageTitle,
+                   // style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)
+                ),
                 SizedBox(height: 40),
 
                 TextFormField(
                   controller: _emailController,
                   decoration: InputDecoration(
                     labelText: "Email",
-                    prefixIcon: Icon(Icons.email, color: Colors.orangeAccent),
+                    prefixIcon: Icon(Icons.email, color: AppColors.bhagwa_Saffron),
                     border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
                   ),
                   keyboardType: TextInputType.emailAddress,
@@ -198,11 +202,14 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                     child: ElevatedButton(
                       onPressed: _isLoading ? null : _sendForgotPasswordRequest,
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.orange,
+                        backgroundColor: AppColors.bhagwa_Saffron,
                         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
                         padding: EdgeInsets.symmetric(vertical: 14),
                       ),
-                      child: _isLoading ? CircularProgressIndicator() : Text("Send OTP", style: TextStyle(fontSize: 16, color: Colors.white)),
+                      child: _isLoading ? CircularProgressIndicator() : Text("SEND OTP",
+                          //style: AppTextStyles.bodyText16,
+                          style: TextStyle(fontSize: 16, color: Colors.white)
+                      ),
                     ),
                   ),
 
@@ -233,7 +240,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                         children: [
                           ElevatedButton(
                             style: ElevatedButton.styleFrom(
-                              backgroundColor: Colors.orange,
+                              backgroundColor: AppColors.bhagwa_Saffron,
                               minimumSize: Size(120, 55), // Ensures consistent button size
                               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
                             ),
@@ -246,7 +253,9 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                           if (_isResendDisabled)
                             Padding(
                               padding: const EdgeInsets.only(top: 8),
-                              child: Text("Wait $_resendTimer sec", style: TextStyle(color: Colors.red)),
+                              child: Text("Wait $_resendTimer sec",
+                                  style: TextStyle(color: AppColors.bhagwa_Saffron)
+                              ),
                             ),
                         ],
                       ),
@@ -259,14 +268,16 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                     width: double.infinity,
                     child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.orange,
+                        backgroundColor: AppColors.bhagwa_Saffron,
                         padding: EdgeInsets.symmetric(vertical: 16),
                         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
                       ),
                       onPressed: _isLoading ? null : _verifyOtp,
                       child: _isLoading
                           ? CircularProgressIndicator()
-                          : Text("Verify OTP", style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
+                          : Text("Verify OTP",
+                          style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold)
+                      ),
                     ),
                   ),
                 ],
@@ -278,16 +289,6 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
     );
   }
 }
-
-
-
-
-
-
-
-
-
-
 
 
 // import 'dart:async';
@@ -457,7 +458,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
 //                 height: 200,
 //               ),
 //               SizedBox(height: 20),
-//               Text("Enter your email for verification", style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold)),
+//               Text("Enter your email for verification", styles: TextStyle(fontSize: 20,fontWeight: FontWeight.bold)),
 //               SizedBox(height: 40),
 //
 //               TextFormField(
@@ -478,7 +479,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
 //               if (_emailErrorMessage != null)
 //                 Padding(
 //                   padding: const EdgeInsets.only(top: 8),
-//                   child: Text(_emailErrorMessage!, style: TextStyle(color: Colors.red)),
+//                   child: Text(_emailErrorMessage!, styles: TextStyle(color: Colors.red)),
 //                 ),
 //
 //               SizedBox(height: 50),
@@ -488,17 +489,17 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
 //                   width: double.infinity,
 //                   child: ElevatedButton(
 //                     onPressed: _isLoading ? null : _sendForgotPasswordRequest,
-//                     style: ElevatedButton.styleFrom(
+//                     styles: ElevatedButton.styleFrom(
 //                       backgroundColor: Colors.orange,
 //                       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
 //                       padding: EdgeInsets.symmetric(vertical: 14),
 //                     ),
-//                     child: _isLoading ? CircularProgressIndicator() : Text("Send OTP",style: TextStyle(fontSize: 16, color: Colors.white)),
+//                     child: _isLoading ? CircularProgressIndicator() : Text("Send OTP",styles: TextStyle(fontSize: 16, color: Colors.white)),
 //                   ),
 //                 ),
 //
 //               if (_showOtpField) ...[
-//                 Text("Enter OTP", style: TextStyle(fontSize: 18)),
+//                 Text("Enter OTP", styles: TextStyle(fontSize: 18)),
 //                 SizedBox(height: 10),
 //
 //                 Row(
@@ -525,7 +526,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
 //                           child: Text("Resend OTP"),
 //                         ),
 //                         if (_isResendDisabled)
-//                           Text("Wait $_resendTimer sec", style: TextStyle(color: Colors.red)),
+//                           Text("Wait $_resendTimer sec", styles: TextStyle(color: Colors.red)),
 //                       ],
 //                     ),
 //                   ],
@@ -598,7 +599,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
 //                     children: [
 //                       Text(
 //                         'Forgot Password',
-//                         style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+//                         styles: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
 //                       ),
 //                       SizedBox(height: 20),
 //                       Container(
@@ -627,7 +628,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
 //                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
 //                               children: [
 //                                 ElevatedButton(
-//                                   style: ElevatedButton.styleFrom(
+//                                   styles: ElevatedButton.styleFrom(
 //                                     backgroundColor: Colors.grey,
 //                                     padding: EdgeInsets.symmetric(horizontal: 30, vertical: 15),
 //                                     shape: RoundedRectangleBorder(
@@ -640,7 +641,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
 //                                   child: Icon(Icons.arrow_back, color: Colors.white),
 //                                 ),
 //                                 ElevatedButton(
-//                                   style: ElevatedButton.styleFrom(
+//                                   styles: ElevatedButton.styleFrom(
 //                                     backgroundColor: Colors.orange,
 //                                     padding: EdgeInsets.symmetric(horizontal: 90, vertical: 13),
 //                                     shape: RoundedRectangleBorder(
@@ -652,7 +653,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
 //                                   },
 //                                   child: Text(
 //                                     'NEXT',
-//                                     style: TextStyle(color: Colors.white, fontSize: 16,fontWeight: FontWeight.bold),
+//                                     styles: TextStyle(color: Colors.white, fontSize: 16,fontWeight: FontWeight.bold),
 //                                   ),
 //                                 ),
 //                               ],

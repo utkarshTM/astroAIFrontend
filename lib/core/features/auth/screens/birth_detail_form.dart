@@ -268,7 +268,7 @@ class _BirthDetailsScreenState extends State<BirthDetailsScreen> {
 //                 Center(
 //                   child: Text(
 //                     'Share Birth Details',
-//                     style: TextStyle(
+//                     styles: TextStyle(
 //                       fontSize: 24,
 //                       fontWeight: FontWeight.bold,
 //                     ),
@@ -363,7 +363,7 @@ class _BirthDetailsScreenState extends State<BirthDetailsScreen> {
 //                 SizedBox(
 //                   width: double.infinity,
 //                   child: ElevatedButton(
-//                     style: ElevatedButton.styleFrom(
+//                     styles: ElevatedButton.styleFrom(
 //                       padding: EdgeInsets.symmetric(vertical: 15),
 //                       backgroundColor: Colors.orange,
 //                       shape: RoundedRectangleBorder(
@@ -377,7 +377,7 @@ class _BirthDetailsScreenState extends State<BirthDetailsScreen> {
 //                     },
 //                     child: Text(
 //                       'NEXT',
-//                       style: TextStyle(
+//                       styles: TextStyle(
 //                         fontSize: 16,
 //                         fontWeight: FontWeight.bold,
 //                         color: Colors.white,

@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:astro_ai_app/core/constants/api_constants.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:astro_ai_app/styles/app_Styles.dart';
 
 class LoginScreen extends StatefulWidget {
   @override
@@ -149,9 +150,9 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: AppColors.background,
       body: SafeArea(
         child: GestureDetector(
-          //onTap: () => FocusScope.of(context).unfocus(), // Dismiss keyboard on tap
           child: SingleChildScrollView(
             child: Padding(
               padding: EdgeInsets.symmetric(horizontal: 20),
@@ -166,14 +167,14 @@ class _LoginScreenState extends State<LoginScreen> {
                   SizedBox(height: 50),
                   Text(
                     "Login",
-                    style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
+                    style: AppTextStyles.pageTitle,
                   ),
                   SizedBox(height: 20),
                   TextField(
                     controller: _emailController,
                     decoration: InputDecoration(
                       labelText: 'Email',
-                      prefixIcon: Icon(Icons.email, color: Colors.orangeAccent),
+                      prefixIcon: Icon(Icons.email, color: AppColors.bhagwa_Saffron),
                       border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
                     ),
                   ),
@@ -183,12 +184,12 @@ class _LoginScreenState extends State<LoginScreen> {
                     obscureText: _obscurePassword,
                     decoration: InputDecoration(
                       labelText: 'Password',
-                      prefixIcon: Icon(Icons.lock, color: Colors.orangeAccent),
+                      prefixIcon: Icon(Icons.lock, color: AppColors.bhagwa_Saffron),
                       border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
                       suffixIcon: IconButton(
                         icon: Icon(
                           _obscurePassword ? Icons.visibility_off : Icons.visibility,
-                          color: Colors.orange,
+                          color: AppColors.bhagwa_Saffron,
                         ),
                         onPressed: () {
                           setState(() {
@@ -210,7 +211,8 @@ class _LoginScreenState extends State<LoginScreen> {
                       },
                       child: Text(
                         "Forgot Password?",
-                        style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.blue),
+                         style: AppTextStyles.bodyText18,
+                         //TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.blue),
                       ),
                     ),
                   ),
@@ -219,12 +221,12 @@ class _LoginScreenState extends State<LoginScreen> {
                       ? CircularProgressIndicator()
                       : ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.orange,
+                      backgroundColor: AppColors.bhagwa_Saffron,
                       padding: EdgeInsets.symmetric(horizontal: 50, vertical: 15),
                       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
                     ),
                     onPressed: _login,
-                    child: Text("Login", style: TextStyle(color: Colors.white)),
+                    child: Text("Login", style: TextStyle(color: AppColors.primary)),
                   ),
                   SizedBox(height: 20),
                   Text("Or sign up with", style: TextStyle(fontSize: 16)),
@@ -257,7 +259,8 @@ class _LoginScreenState extends State<LoginScreen> {
                         },
                         child: Text(
                           "Sign up here",
-                          style: TextStyle(color: Colors.blue, fontSize: 16, fontWeight: FontWeight.bold),
+                          style: AppTextStyles.bodyText16,
+                          //style: TextStyle(color: Colors.blue, fontSize: 16, fontWeight: FontWeight.bold),
                         ),
                       ),
                     ],
@@ -275,7 +278,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
 
 
-
+//
 // import 'dart:convert';
 // import 'package:astro_ai_app/core/features/auth/screens/forgot_password_screen.dart';
 // import 'package:astro_ai_app/core/features/auth/screens/sign_up_screen.dart';
@@ -434,7 +437,7 @@ class _LoginScreenState extends State<LoginScreen> {
 //             children: [
 //               Text(
 //                 "Login",
-//                 style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
+//                 styles: TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
 //               ),
 //               SizedBox(height: 20),
 //               TextField(
@@ -474,7 +477,7 @@ class _LoginScreenState extends State<LoginScreen> {
 //                   },
 //                   child: Text(
 //                     "Forgot Password?",
-//                     style: TextStyle(
+//                     styles: TextStyle(
 //                       fontSize: 16,
 //                       fontWeight: FontWeight.bold,
 //                       color: Colors.blue,
@@ -487,7 +490,7 @@ class _LoginScreenState extends State<LoginScreen> {
 //               _isLoading
 //                   ? CircularProgressIndicator()
 //                   : ElevatedButton(
-//                 style: ElevatedButton.styleFrom(
+//                 styles: ElevatedButton.styleFrom(
 //                   backgroundColor: Colors.orange,
 //                   padding: EdgeInsets.symmetric(horizontal: 50, vertical: 15),
 //                   shape: RoundedRectangleBorder(
@@ -495,10 +498,10 @@ class _LoginScreenState extends State<LoginScreen> {
 //                   ),
 //                 ),
 //                 onPressed: _login,
-//                 child: Text("Login", style: TextStyle(color: Colors.white)),
+//                 child: Text("Login", styles: TextStyle(color: Colors.white)),
 //               ),
 //               SizedBox(height: 20),
-//               Text("Or sign up with", style: TextStyle(fontSize: 16)),
+//               Text("Or sign up with", styles: TextStyle(fontSize: 16)),
 //               SizedBox(height: 10),
 //               Row(
 //                 mainAxisAlignment: MainAxisAlignment.center,
@@ -518,7 +521,7 @@ class _LoginScreenState extends State<LoginScreen> {
 //               Row(
 //                 mainAxisAlignment: MainAxisAlignment.center,
 //                 children: [
-//                   Text("Don't have an account?", style: TextStyle(fontSize: 16)),
+//                   Text("Don't have an account?", styles: TextStyle(fontSize: 16)),
 //                   TextButton(
 //                     onPressed: () {
 //                       Navigator.push(
@@ -526,7 +529,7 @@ class _LoginScreenState extends State<LoginScreen> {
 //                         MaterialPageRoute(builder: (context) => SignUpPage()),
 //                       );
 //                     },
-//                     child: Text("Sign up here", style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+//                     child: Text("Sign up here", styles: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
 //                   ),
 //                 ],
 //               ),
@@ -537,6 +540,6 @@ class _LoginScreenState extends State<LoginScreen> {
 //     );
 //   }
 // }
-
-//---------------------------------------------------------------//
-
+//
+// ---------------------------------------------------------------//
+//

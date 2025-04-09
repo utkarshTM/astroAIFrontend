@@ -28,7 +28,7 @@ class MatchmakingCard extends StatelessWidget {
                   Icon(
                       Icons.favorite,
                       size: isTablet ? 56 : 48,
-                      color: Colors.pink
+                      color: Colors.red
                   ),
                   SizedBox(height: isTablet ? 16 : 12),
                   Text(
