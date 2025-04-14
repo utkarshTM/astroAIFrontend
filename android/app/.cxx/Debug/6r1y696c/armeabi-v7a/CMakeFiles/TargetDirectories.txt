@@ -1,0 +1,2 @@
+C:/astroAIFrontend/android/app/.cxx/Debug/6r1y696c/armeabi-v7a/CMakeFiles/edit_cache.dir
+C:/astroAIFrontend/android/app/.cxx/Debug/6r1y696c/armeabi-v7a/CMakeFiles/rebuild_cache.dir

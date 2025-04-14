@@ -32,31 +32,32 @@ class _WelcomePageState extends State<WelcomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      //backgroundColor: Colors.white24,
       body: Stack(
         children: [
-          // Background Image
-          Container(
-            width: double.infinity,
-            height: double.infinity,
-            decoration: BoxDecoration(
-              image: DecorationImage(
-                image: AssetImage('assets/bg1.webp'),
-                fit: BoxFit.cover, // Covers full screen
-              ),
-            ),
-          ),
+          //Background Image
+          // Container(
+          //   width: double.infinity,
+          //   height: double.infinity,
+          //   decoration: BoxDecoration(
+          //     image: DecorationImage(
+          //       image: AssetImage('assets/logo.png'),
+          //       fit: BoxFit.cover, // Covers full screen
+          //     ),
+          //   ),
+          // ),
 
           // Content
           Column(
             children: [
-              // Top Image (Existing Welcome Image)
+              SizedBox(height: 200),
               Stack(
                 children: [
                   Container(
-                    height: 280,
+                    height: 150,
                     decoration: BoxDecoration(
                       image: DecorationImage(
-                        image: AssetImage(''),
+                        image: AssetImage('assets/logo.png'),
                         fit: BoxFit.contain,
                       ),
                     ),
@@ -67,13 +68,6 @@ class _WelcomePageState extends State<WelcomePage> {
                     right: 0,
                     child: Container(
                       height: 15,
-                      // decoration: BoxDecoration(
-                      //   color: Colors.white,
-                      //   // borderRadius: BorderRadius.only(
-                      //   //   topLeft: Radius.circular(30),
-                      //   //   topRight: Radius.circular(30),
-                      //   // ),
-                      // ),
                     ),
                   ),
                 ],
@@ -84,12 +78,12 @@ class _WelcomePageState extends State<WelcomePage> {
                 child: Column(
                   children: [
                     Text(
-                      'Hello, And Welcome to Astro Ai.',
+                      'Hello,Welcome to Astro Ai.',
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         fontSize: 22,
                         fontWeight: FontWeight.bold,
-                        color: Colors.white, // Adjust text color for better visibility
+                        color: Colors.black, // Adjust text color for better visibility
                       ),
                     ),
                     SizedBox(height: 10),

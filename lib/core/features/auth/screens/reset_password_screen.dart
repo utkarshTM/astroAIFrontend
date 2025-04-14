@@ -31,6 +31,8 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
       _errorMessage = null;
     });
 
+    // final String apiUrl = ApiConstants.getAuthUrl("reset-password");
+
     final String apiUrl = "${ApiConstants.baseUrl}/api/auth/reset-password";
     try {
       final response = await http.post(
