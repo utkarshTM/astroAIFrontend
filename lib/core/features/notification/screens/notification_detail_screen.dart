@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:astro_ai_app/styles/app_Styles.dart';
+import 'package:astro_ai_app/core/theme/app_colors.dart';
+import 'package:astro_ai_app/core/theme/app_text_style.dart';
 
 class NotificationDetailScreen extends StatelessWidget {
   final String title;
@@ -17,7 +18,13 @@ class NotificationDetailScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Notification Detail'),
+        title: const Text(
+            'Notification Detail',
+          style: AppTextStyles.appBarTitle,
+        ),
+        iconTheme: const IconThemeData(
+          color: Colors.white,
+        ),
         backgroundColor: AppColors.bhagwa_Saffron,
       ),
       body: Padding(

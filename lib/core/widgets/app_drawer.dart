@@ -2,7 +2,8 @@ import 'package:astro_ai_app/core/features/horoscope/screen/horoscope_list_scree
 import 'package:flutter/material.dart';
 import 'package:astro_ai_app/core/features/About/screens/about_screen.dart';
 import 'package:astro_ai_app/core/features/chatWithAi/screens/chat_screen.dart';
-import 'package:astro_ai_app/styles/app_Styles.dart';
+import 'package:astro_ai_app/core/theme/app_colors.dart';
+import 'package:astro_ai_app/core/theme/app_text_style.dart';
 
 class AppDrawer extends StatelessWidget {
   @override
@@ -18,10 +19,6 @@ class AppDrawer extends StatelessWidget {
             child: Text(
               'Astro AI',
                 style: AppTextStyles.appBarTitle,
-              // style: TextStyle(
-              //   color: Colors.white,
-              //   fontSize: 24,
-              // ),
             ),
           ),
           _buildDrawerItem(
@@ -96,7 +93,6 @@ class AppDrawer extends StatelessWidget {
       ),
     );
   }
-
   Widget _buildDrawerItem({
     required IconData icon,
     required String title,

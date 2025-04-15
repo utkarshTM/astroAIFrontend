@@ -33,7 +33,7 @@
 //                   SizedBox(height: isTablet ? 16 : 12),
 //                   Text(
 //                     'Notifications',
-//                     styles: Theme.of(context).textTheme.titleLarge?.copyWith(
+//                     theme: Theme.of(context).textTheme.titleLarge?.copyWith(
 //                       fontWeight: FontWeight.bold,
 //                       fontSize: isTablet ? 22 : 18,
 //                     ),
@@ -42,7 +42,7 @@
 //                   Text(
 //                     'View your daily predictions',
 //                     textAlign: TextAlign.center,
-//                     styles: Theme.of(context).textTheme.bodyMedium?.copyWith(
+//                     theme: Theme.of(context).textTheme.bodyMedium?.copyWith(
 //                       fontSize: isTablet ? 16 : 14,
 //                     ),
 //                   ),

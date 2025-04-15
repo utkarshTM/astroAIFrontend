@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:astro_ai_app/styles/app_Styles.dart';
+import 'package:astro_ai_app/core/theme/app_colors.dart';
+import 'package:astro_ai_app/core/theme/app_text_style.dart';
 
 class AboutUsScreen extends StatelessWidget {
   const AboutUsScreen({super.key});
@@ -14,8 +15,11 @@ class AboutUsScreen extends StatelessWidget {
           'About Us',
           style: AppTextStyles.appBarTitle,
         ),
-        backgroundColor: AppColors.primary,
-        iconTheme: const IconThemeData(color: AppColors.textLight),
+        iconTheme: const IconThemeData(
+          color: Colors.white,
+        ),
+        backgroundColor: AppColors.bhagwa_Saffron,
+        //iconTheme: const IconThemeData(color: AppColors.textLight),
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
@@ -34,20 +38,20 @@ class AboutUsScreen extends StatelessWidget {
               child: Text(
                 'Welcome to Astro AI',
                 style: isTablet
-                    ? AppTextStyles.pageTitle.copyWith(fontSize: 24)
-                    : AppTextStyles.pageTitle,
+                    ? AppTextStyles.heading.copyWith(fontSize: 24)
+                    : AppTextStyles.heading,
               ),
             ),
             const SizedBox(height: 16),
             Text(
               'Astro AI is your personal AI-powered astrologer. Our goal is to provide users with deep astrological insights using modern technology and ancient wisdom. We combine machine learning and astrology to help guide you in areas such as love, career, health, and more.',
               textAlign: TextAlign.justify,
-              style: isTablet ? AppTextStyles.bodyText18 : AppTextStyles.bodyText16,
+              style: isTablet ? AppTextStyles.bodyText16 : AppTextStyles.bodyText16,
             ),
             const SizedBox(height: 16),
             Text(
               'What We Offer:',
-              style: isTablet ? AppTextStyles.subheading20 : AppTextStyles.subheading,
+              style: isTablet ? AppTextStyles.heading : AppTextStyles.heading,
             ),
             const SizedBox(height: 10),
             _buildBulletPoint('AI-powered astrological chat assistance.'),
@@ -58,7 +62,7 @@ class AboutUsScreen extends StatelessWidget {
             Text(
               'Our mission is to bridge the gap between traditional astrology and modern technology to empower individuals in understanding their cosmic path.',
               textAlign: TextAlign.justify,
-              style: isTablet ? AppTextStyles.bodyText18 : AppTextStyles.bodyText16,
+              style: isTablet ? AppTextStyles.bodyText16 : AppTextStyles.bodyText16,
             ),
             const SizedBox(height: 30),
             Center(

@@ -4,6 +4,11 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:astro_ai_app/core/constants/api_constants.dart';
+import 'package:astro_ai_app/core/theme/app_colors.dart';
+import 'package:astro_ai_app/core/theme/app_text_style.dart';
+import 'package:astro_ai_app/core/theme/app_spacing.dart';
+import 'package:astro_ai_app/core/theme/app_radius.dart';
+import 'package:astro_ai_app/core/theme/app_button.dart';
 
 class ProfileService {
   static Future<Map<String, dynamic>?> getProfile() async {
@@ -15,6 +20,7 @@ class ProfileService {
     }
 
     final String apiUrl = "${ApiConstants.baseUrl}/api/users/profile";
+
     try {
       final response = await http.get(
         Uri.parse(apiUrl),
@@ -25,12 +31,10 @@ class ProfileService {
         },
       );
 
-      print("Profile API Response: ${response.statusCode} - ${response.body}");
-
       if (response.statusCode == 200) {
         return json.decode(response.body)['data'];
       } else if (response.statusCode == 404) {
-        return null; // Profile doesn't exist
+        return null;
       } else {
         throw Exception("Failed to load profile: ${response.statusCode}");
       }
@@ -48,6 +52,7 @@ class ProfileService {
     }
 
     final String apiUrl = "${ApiConstants.baseUrl}/api/users/profile";
+
     try {
       final response = await http.put(
         Uri.parse(apiUrl),
@@ -118,10 +123,9 @@ class _EditUserDetailsScreenState extends State<EditUserDetailsScreen> {
           _placeOfBirth = profile['placeOfBirth'];
           if (profile['dateOfBirth'] != null) {
             try {
-              _dateController.text = DateFormat('yyyy-MM-dd')
-                  .format(DateTime.parse(profile['dateOfBirth']));
+              _dateController.text =
+                  DateFormat('yyyy-MM-dd').format(DateTime.parse(profile['dateOfBirth']));
             } catch (e) {
-              print("Error parsing date: $e");
               _dateController.text = '';
             }
           }
@@ -131,14 +135,9 @@ class _EditUserDetailsScreenState extends State<EditUserDetailsScreen> {
         });
       }
     } catch (e) {
-      setState(() {
-        _errorMessage = e.toString();
-      });
-      print("Profile fetch error: $e");
+      setState(() => _errorMessage = e.toString());
     } finally {
-      if (mounted) {
-        setState(() => _isLoading = false);
-      }
+      if (mounted) setState(() => _isLoading = false);
     }
   }
 
@@ -177,8 +176,7 @@ class _EditUserDetailsScreenState extends State<EditUserDetailsScreen> {
     if (picked != null) {
       setState(() {
         _timeController.text =
-        "${picked.hour.toString().padLeft(2, '0')}:"
-            "${picked.minute.toString().padLeft(2, '0')}";
+        "${picked.hour.toString().padLeft(2, '0')}:${picked.minute.toString().padLeft(2, '0')}";
       });
     }
   }
@@ -214,71 +212,79 @@ class _EditUserDetailsScreenState extends State<EditUserDetailsScreen> {
         SnackBar(content: Text("Error: ${e.toString()}")),
       );
     } finally {
-      if (mounted) {
-        setState(() => _isUpdating = false);
-      }
+      if (mounted) setState(() => _isUpdating = false);
     }
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: AppColors.background,
       appBar: AppBar(
-        title: const Text("Edit Profile"),
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back),
-          onPressed: () => Navigator.pop(context),
+        title: Text(
+            "Edit Profile",
+            style: AppTextStyles.appBarTitle
         ),
+        iconTheme: const IconThemeData(
+          color: Colors.white,
+        ),
+        backgroundColor: AppColors.bhagwa_Saffron,
       ),
       body: _isLoading
           ? const Center(child: CircularProgressIndicator())
           : _errorMessage != null
-          ? Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(
-              "Failed to load profile",
-              style: Theme.of(context).textTheme.titleMedium,
-            ),
-            const SizedBox(height: 16),
-            Text(
-              _errorMessage!,
-              textAlign: TextAlign.center,
-              style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                color: Theme.of(context).colorScheme.error,
+          ? Padding(
+        padding: const EdgeInsets.symmetric(horizontal: AppSpacing.lg, vertical: 0),
+        //padding: AppSpacing.screenPadding,
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text("Failed to load profile", style: AppTextStyles.heading),
+              const SizedBox(height: 16),
+              Text(
+                _errorMessage!,
+                textAlign: TextAlign.center,
+                style: AppTextStyles.bodyText16.copyWith(color: AppColors.bhagwa_Saffron),
               ),
-            ),
-            const SizedBox(height: 24),
-            ElevatedButton(
-              onPressed: _fetchUserProfile,
-              child: const Text("Retry"),
-            ),
-          ],
+              const SizedBox(height: 24),
+              ElevatedButton(
+                onPressed: _fetchUserProfile,
+                child: const Text("Retry"),
+              ),
+            ],
+          ),
         ),
       )
           : SingleChildScrollView(
-        padding: const EdgeInsets.all(16),
+        padding: const EdgeInsets.symmetric(horizontal: AppSpacing.lg, vertical: 0),
         child: Form(
           key: _formKey,
           child: Column(
             children: [
+              SizedBox(height: 20),
+              Image.asset('assets/logo.png', height: 150, fit: BoxFit.contain),
+              const SizedBox(height: 20),
+              // Name
               TextFormField(
                 controller: _nameController,
-                decoration: const InputDecoration(
+                decoration: InputDecoration(
                   labelText: "Name",
-                  border: OutlineInputBorder(),
+                  border: OutlineInputBorder(borderRadius: AppRadius.sm)
                 ),
                 validator: (value) =>
                 value?.isEmpty ?? true ? "Required" : null,
               ),
               const SizedBox(height: 16),
+
+              // Gender
               DropdownButtonFormField<String>(
                 value: _gender,
-                decoration: const InputDecoration(
+                decoration: InputDecoration(
                   labelText: "Gender",
-                  border: OutlineInputBorder(),
+                  border: OutlineInputBorder(borderRadius: AppRadius.sm),
                 ),
+                icon: Icon(Icons.arrow_drop_down, color: AppColors.bhagwa_Saffron),
                 items: ["Male", "Female", "Other"]
                     .map((gender) => DropdownMenuItem(
                   value: gender,
@@ -286,94 +292,103 @@ class _EditUserDetailsScreenState extends State<EditUserDetailsScreen> {
                 ))
                     .toList(),
                 onChanged: (value) => setState(() => _gender = value),
-                validator: (value) =>
-                value == null ? "Required" : null,
+                validator: (value) => value == null ? "Required" : null,
               ),
               const SizedBox(height: 16),
+
+              // Place of Birth
               TextFormField(
                 controller: TextEditingController(text: _placeOfBirth),
-                decoration: const InputDecoration(
+                decoration: InputDecoration(
                   labelText: "Place of Birth",
-                  border: OutlineInputBorder(),
+                  border: OutlineInputBorder(borderRadius: AppRadius.sm),
                 ),
                 onChanged: (value) => _placeOfBirth = value,
                 validator: (value) =>
                 value?.isEmpty ?? true ? "Required" : null,
               ),
               const SizedBox(height: 16),
+
+              // Date of Birth
               TextFormField(
                 controller: _dateController,
-                decoration: const InputDecoration(
-                  labelText: "Date of Birth",
-                  border: OutlineInputBorder(),
-                  suffixIcon: Icon(Icons.calendar_today),
-                ),
                 readOnly: true,
                 onTap: () => _selectDate(context),
+                decoration: InputDecoration(
+                  labelText: "Date of Birth",
+                  border: OutlineInputBorder(borderRadius: AppRadius.sm),
+                  suffixIcon: Icon(Icons.calendar_today,color: AppColors.bhagwa_Saffron),
+                ),
                 validator: (value) =>
                 value?.isEmpty ?? true ? "Required" : null,
               ),
               const SizedBox(height: 16),
+
+              // Time of Birth
               TextFormField(
                 controller: _timeController,
-                decoration: const InputDecoration(
-                  labelText: "Time of Birth",
-                  border: OutlineInputBorder(),
-                  suffixIcon: Icon(Icons.access_time),
-                ),
                 readOnly: true,
                 onTap: () => _selectTime(context),
+                decoration: InputDecoration(
+                  labelText: "Time of Birth",
+                  border: OutlineInputBorder(borderRadius: AppRadius.sm),
+                  suffixIcon: Icon(Icons.access_time,color: AppColors.bhagwa_Saffron),
+                ),
                 validator: (value) =>
                 value?.isEmpty ?? true ? "Required" : null,
               ),
               const SizedBox(height: 16),
+
+              // Marital Status
               DropdownButtonFormField<String>(
                 value: _maritalStatus,
-                decoration: const InputDecoration(
+                decoration: InputDecoration(
                   labelText: "Marital Status",
-                  border: OutlineInputBorder(),
+                  border: OutlineInputBorder(borderRadius: AppRadius.sm),
                 ),
+                icon: Icon(Icons.arrow_drop_down, color: AppColors.bhagwa_Saffron),
                 items: ["Single", "Married", "Divorced", "Widowed"]
                     .map((status) => DropdownMenuItem(
                   value: status,
                   child: Text(status),
                 ))
                     .toList(),
-                onChanged: (value) =>
-                    setState(() => _maritalStatus = value),
-                validator: (value) =>
-                value == null ? "Required" : null,
+                onChanged: (value) => setState(() => _maritalStatus = value),
+                validator: (value) => value == null ? "Required" : null,
               ),
               const SizedBox(height: 16),
+
+              // Occupation
               DropdownButtonFormField<String>(
                 value: _occupation,
-                decoration: const InputDecoration(
+                decoration: InputDecoration(
                   labelText: "Occupation",
-                  border: OutlineInputBorder(),
+                  border: OutlineInputBorder(borderRadius: AppRadius.sm),
                 ),
-                items: [
-                  "Student",
-                  "Employed",
-                  "Unemployed",
-                  "Other"
-                ].map((occupation) => DropdownMenuItem(
+                icon: Icon(Icons.arrow_drop_down, color: AppColors.bhagwa_Saffron),
+                items: ["Student", "Employed", "Unemployed", "Other"]
+                    .map((occupation) => DropdownMenuItem(
                   value: occupation,
                   child: Text(occupation),
                 ))
                     .toList(),
-                onChanged: (value) =>
-                    setState(() => _occupation = value),
-                validator: (value) =>
-                value == null ? "Required" : null,
+                onChanged: (value) => setState(() => _occupation = value),
+                validator: (value) => value == null ? "Required" : null,
               ),
               const SizedBox(height: 24),
+
+              // Submit
               SizedBox(
                 width: double.infinity,
                 child: ElevatedButton(
                   onPressed: _isUpdating ? null : _updateProfile,
+                  style: AppButtonStyle.primary,
                   child: _isUpdating
                       ? const CircularProgressIndicator()
-                      : const Text("UPDATE PROFILE"),
+                      : Text("UPDATE PROFILE",
+                        style:
+                        AppTextStyles.appBarTitle,
+                  ),
                 ),
               ),
             ],

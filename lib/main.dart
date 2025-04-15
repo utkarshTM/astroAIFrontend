@@ -107,7 +107,7 @@
 // //             const Text('You have pushed the button this many times:'),
 // //             Text(
 // //               '$_counter',
-// //               styles: Theme.of(context).textTheme.headlineMedium,
+// //               theme: Theme.of(context).textTheme.headlineMedium,
 // //             ),
 // //           ],
 // //         ),
@@ -142,11 +142,36 @@
 //   }
 // }
 
+// import 'package:flutter/material.dart';
+// import 'core/features/auth/screens/welcome_screen.dart';
+//
+// void main() {
+//   runApp(const MyApp());
+// }
+// class MyApp extends StatelessWidget {
+//   const MyApp({super.key});
+//   @override
+//   Widget build(BuildContext context) {
+//     return MaterialApp(
+//       debugShowCheckedModeBanner: false,
+//       home: WelcomePage(),
+//     );
+//   }
+// }
+
+
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'core/features/auth/screens/welcome_screen.dart';
+import 'core/theme/theme_provider.dart';  // Import your ThemeProvider
 
 void main() {
-  runApp(const MyApp());
+  runApp(
+    ChangeNotifierProvider(
+      create: (_) => ThemeProvider(),
+      child: const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -154,13 +179,15 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final themeProvider = Provider.of<ThemeProvider>(context);
+
     return MaterialApp(
       debugShowCheckedModeBanner: false,
+      theme: ThemeData.light(),            // Light theme config
+      darkTheme: ThemeData.dark(), // Dark theme config
+      //themeMode: themeProvider.currentTheme, // Decides theme based on provider (system/user choice)
+      themeMode: ThemeMode.system,
       home: WelcomePage(),
     );
   }
 }
-
-
-
-

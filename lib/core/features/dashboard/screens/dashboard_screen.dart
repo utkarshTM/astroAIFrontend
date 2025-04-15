@@ -1,4 +1,3 @@
-import 'package:astro_ai_app/styles/app_Styles.dart';
 import 'package:flutter/material.dart';
 import 'package:astro_ai_app/core/widgets/app_header.dart';
 import 'package:astro_ai_app/core/widgets/app_drawer.dart';
@@ -6,6 +5,8 @@ import 'package:astro_ai_app/core/widgets/chat_card.dart';
 import 'package:astro_ai_app/core/widgets/horoscope_card.dart';
 import 'package:astro_ai_app/core/widgets/matchmaking_card.dart';
 import 'package:astro_ai_app/core/services/profile_service.dart';
+import 'package:astro_ai_app/core/theme/app_colors.dart';
+import 'package:astro_ai_app/core/theme/app_text_style.dart';
 
 class DashboardScreen extends StatefulWidget {
   @override
@@ -59,6 +60,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
 
     return Scaffold(
       backgroundColor: AppColors.primary,
+      //backgroundColor: AppColors.bhagwaSaffron(context),
       appBar: AppHeader(),
       drawer: AppDrawer(),
       body: SafeArea(
@@ -71,10 +73,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
               SizedBox(height: isTablet ? 12 : 8),
               Text(
                 'The universe has aligned to bring you here today',
-                style: TextStyle(
-                  fontSize: isTablet ? 18 : 14,
-                  color: Colors.black,
-                ),
+                style: AppTextStyles.bodyText16,
               ),
               SizedBox(height: isTablet ? 28 : 24),
               _buildFeatureGrid(isTablet),

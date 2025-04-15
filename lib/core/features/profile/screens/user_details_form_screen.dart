@@ -5,6 +5,11 @@ import 'dart:convert';
 import 'package:astro_ai_app/core/constants/api_constants.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:astro_ai_app/core/features/dashboard/screens/dashboard_screen.dart';
+import 'package:astro_ai_app/core/theme/app_colors.dart';
+import 'package:astro_ai_app/core/theme/app_text_style.dart';
+import 'package:astro_ai_app/core/theme/app_radius.dart';
+import 'package:astro_ai_app/core/theme/app_button.dart';
+import 'package:astro_ai_app/core/theme/app_spacing.dart';
 
 class UserDetailsScreen extends StatefulWidget {
   @override
@@ -131,9 +136,18 @@ class _UserDetailsScreenState extends State<UserDetailsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("Profile")),
+      appBar: AppBar(title:
+        Text(
+            "Profile",
+            style: AppTextStyles.appBarTitle
+        ),
+        iconTheme: const IconThemeData(
+          color: Colors.white,
+        ),
+        backgroundColor: AppColors.bhagwa_Saffron,
+      ),
       body: SingleChildScrollView(
-        padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 0),
+        padding: const EdgeInsets.symmetric(horizontal: AppSpacing.lg, vertical: 0),
         child: Form(
           key: _formKey,
           child: Column(
@@ -142,7 +156,7 @@ class _UserDetailsScreenState extends State<UserDetailsScreen> {
               SizedBox(height: 25),
               Center(
                 child: Image.asset(
-                  'assets/logo.png', // <-- Replace with your image asset path
+                  'assets/logo.png',
                   height: 150,
                   fit: BoxFit.contain,
                 ),
@@ -151,17 +165,16 @@ class _UserDetailsScreenState extends State<UserDetailsScreen> {
               Center(
                 child: Text(
                   'Share Personal Details',
-                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                    style: AppTextStyles.heading
                 ),
               ),
-              //SizedBox(height: 25),
 
               SizedBox(height: 10),
               TextFormField(
                 controller: _nameController,
                 decoration: InputDecoration(
                   labelText: "Name",
-                  border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
+                  border: OutlineInputBorder(borderRadius: AppRadius.sm),
                 ),
                 validator: (value) => value!.isEmpty ? "Enter your name" : null,
               ),
@@ -170,8 +183,9 @@ class _UserDetailsScreenState extends State<UserDetailsScreen> {
                 value: _gender,
                 decoration: InputDecoration(
                   labelText: "Gender",
-                  border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
+                  border: OutlineInputBorder(borderRadius: AppRadius.sm),
                 ),
+                icon: Icon(Icons.arrow_drop_down, color: AppColors.bhagwa_Saffron),
                 items: ["Male", "Female", "Other"]
                     .map((e) => DropdownMenuItem(value: e, child: Text(e)))
                     .toList(),
@@ -182,7 +196,7 @@ class _UserDetailsScreenState extends State<UserDetailsScreen> {
               TextFormField(
                 decoration: InputDecoration(
                   labelText: "Place of Birth",
-                  border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
+                  border: OutlineInputBorder(borderRadius: AppRadius.sm),
                 ),
                 onChanged: (value) => _placeOfBirth = value,
                 validator: (value) => value!.isEmpty ? "Enter place of birth" : null,
@@ -192,8 +206,8 @@ class _UserDetailsScreenState extends State<UserDetailsScreen> {
                 controller: _dateController,
                 decoration: InputDecoration(
                   labelText: "Date of Birth",
-                  border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
-                  suffixIcon: Icon(Icons.calendar_today, color: Colors.orangeAccent),
+                  border: OutlineInputBorder(borderRadius: AppRadius.sm),
+                  suffixIcon: Icon(Icons.calendar_today, color: AppColors.bhagwa_Saffron),
                 ),
                 readOnly: true,
                 onTap: () => _selectDate(context),
@@ -204,8 +218,8 @@ class _UserDetailsScreenState extends State<UserDetailsScreen> {
                 controller: _timeController,
                 decoration: InputDecoration(
                   labelText: "Time of Birth",
-                  border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
-                  suffixIcon: Icon(Icons.access_time, color: Colors.orangeAccent),
+                  border: OutlineInputBorder(borderRadius: AppRadius.sm),
+                  suffixIcon: Icon(Icons.access_time, color: AppColors.bhagwa_Saffron),
                 ),
                 readOnly: true,
                 onTap: () => _selectTime(context),
@@ -216,8 +230,9 @@ class _UserDetailsScreenState extends State<UserDetailsScreen> {
                 value: _maritalStatus,
                 decoration: InputDecoration(
                   labelText: "Marital Status",
-                  border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
+                  border: OutlineInputBorder(borderRadius: AppRadius.sm),
                 ),
+                icon: Icon(Icons.arrow_drop_down, color: AppColors.bhagwa_Saffron),
                 items: ["Single", "Married", "Divorced", "Widowed"]
                     .map((e) => DropdownMenuItem(value: e, child: Text(e)))
                     .toList(),
@@ -229,8 +244,9 @@ class _UserDetailsScreenState extends State<UserDetailsScreen> {
                 value: _occupation,
                 decoration: InputDecoration(
                   labelText: "Occupation",
-                  border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
+                  border: OutlineInputBorder(borderRadius: AppRadius.sm),
                 ),
+                icon: Icon(Icons.arrow_drop_down, color: AppColors.bhagwa_Saffron),
                 items: ["Student", "Employed", "Un-Employed", "Other"]
                     .map((e) => DropdownMenuItem(value: e, child: Text(e)))
                     .toList(),
@@ -241,17 +257,11 @@ class _UserDetailsScreenState extends State<UserDetailsScreen> {
               SizedBox(
                 width: double.infinity,
                 child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    padding: EdgeInsets.symmetric(vertical: 15),
-                    backgroundColor: Colors.orange,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                  ),
+                  style: AppButtonStyle.primary,
                   onPressed: _submitProfile,
                   child: Text(
                     'SUBMIT',
-                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.white),
+                    style: AppTextStyles.appBarTitle,
                   ),
                 ),
               ),
@@ -269,7 +279,7 @@ class _UserDetailsScreenState extends State<UserDetailsScreen> {
                     style: TextStyle(
                       fontSize: 16,
                       decoration: TextDecoration.underline,
-                      color: Colors.orange,
+                      color: AppColors.bhagwa_Saffron,
                     ),
                   ),
                 ),
