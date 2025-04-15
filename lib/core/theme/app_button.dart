@@ -14,7 +14,7 @@ class AppButtonStyle {
   );
 
   static final disabled = ElevatedButton.styleFrom(
-    backgroundColor: AppColors.bhagwa_Saffron.withOpacity(0.5),
+    backgroundColor: AppColors.bhagwa_Saffron.withAlpha((0.8 * 255).round()),
     foregroundColor: Colors.white,
     padding: AppSpacing.buttonPadding,
     shape: RoundedRectangleBorder(

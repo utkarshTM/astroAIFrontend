@@ -12,12 +12,11 @@ class AppColors {
   static const Color primary = Color(0xFFFFFFFF); // background
   static const Color highlight = Colors.orange;
   static const Color inactiveDot = Colors.grey;
-  static const Color bhagwa_Saffron = Color(0xFFFF6F00); // saffron ton
+  static const Color bhagwa_Saffron = Color(0xFFFF6F00);
 
   static Color bhagwaSaffron(BuildContext context) {
     return Theme.of(context).brightness == Brightness.dark
-        ? Color(0xFF121212)!
-        : AppColors.bhagwa_Saffron;
+        ? Color(0xFF121212) : AppColors.bhagwa_Saffron;
   }
 
   // static const Color primary = Colors.white;
