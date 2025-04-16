@@ -25,7 +25,7 @@ class NotificationDetailScreen extends StatelessWidget {
         iconTheme: const IconThemeData(
           color: Colors.white,
         ),
-        backgroundColor: AppColors.bhagwa_Saffron,
+        backgroundColor: AppColors.bhagwaSaffron(context),
       ),
       body: Padding(
         padding: const EdgeInsets.all(24.0),

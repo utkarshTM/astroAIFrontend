@@ -219,7 +219,8 @@ class _EditUserDetailsScreenState extends State<EditUserDetailsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.background,
+      //backgroundColor: AppColors.background,
+      backgroundColor: AppColors.blackWhite(context),
       appBar: AppBar(
         title: Text(
             "Edit Profile",
@@ -228,7 +229,7 @@ class _EditUserDetailsScreenState extends State<EditUserDetailsScreen> {
         iconTheme: const IconThemeData(
           color: Colors.white,
         ),
-        backgroundColor: AppColors.bhagwa_Saffron,
+        backgroundColor: AppColors.bhagwaSaffron(context),
       ),
       body: _isLoading
           ? const Center(child: CircularProgressIndicator())

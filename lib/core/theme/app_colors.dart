@@ -8,15 +8,31 @@ class AppColors {
   static const facebook = Colors.blue;
   static const textPrimary = Colors.black87;
   static const textSecondary = Colors.black45;
-
   static const Color primary = Color(0xFFFFFFFF); // background
   static const Color highlight = Colors.orange;
   static const Color inactiveDot = Colors.grey;
   static const Color bhagwa_Saffron = Color(0xFFFF6F00);
+  static const Color lightText = Colors.black;
+  static const Color darkText = Colors.white;
 
+  static Color adaptiveTextColor(BuildContext context) {
+    return Theme.of(context).brightness == Brightness.dark
+        ? darkText
+        : lightText;
+  }
   static Color bhagwaSaffron(BuildContext context) {
     return Theme.of(context).brightness == Brightness.dark
         ? Color(0xFF121212) : AppColors.bhagwa_Saffron;
+  }
+
+  static Color blackWhite(BuildContext context) {
+    return Theme.of(context).brightness == Brightness.dark
+        ? Color(0xFF121212) : AppColors.primary;
+  }
+
+  static Color iconColor(BuildContext context) {
+    return Theme.of(context).brightness == Brightness.dark
+        ? AppColors.primary : AppColors.bhagwa_Saffron;
   }
 
   // static const Color primary = Colors.white;

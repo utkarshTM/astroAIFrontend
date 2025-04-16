@@ -57,6 +57,9 @@
 // }
 
 import 'package:flutter/material.dart';
+import 'package:astro_ai_app/core/theme/app_colors.dart';
+import 'package:astro_ai_app/core/theme/app_text_style.dart';
+import 'package:astro_ai_app/core/theme/app_radius.dart';
 
 class NotificationCard extends StatelessWidget {
   final String title;
@@ -72,13 +75,23 @@ class NotificationCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isTablet = MediaQuery
+        .of(context)
+        .size
+        .shortestSide > 600;
     return Card(
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+      shape: RoundedRectangleBorder(borderRadius: AppRadius.sm3),
       elevation: 3,
       child: ListTile(
         contentPadding: const EdgeInsets.all(16),
-        leading: const Icon(Icons.notifications, color: Colors.deepPurple),
-        title: Text(title, style: const TextStyle(fontWeight: FontWeight.bold)),
+        leading: Icon(Icons.notifications, color: AppColors.iconColor(context)),
+        title: Text(
+            title,
+            style: isTablet
+                ? AppTextStyles.appBarTitle.copyWith(color: AppColors.adaptiveTextColor(context))
+                : AppTextStyles.appBarTitle.copyWith(color: AppColors.adaptiveTextColor(context))
+        ),
+         // const TextStyle(fontWeight: FontWeight.bold)
         subtitle: Text(subtitle),
         trailing: Text(
           time,

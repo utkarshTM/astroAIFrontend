@@ -320,7 +320,8 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:astro_ai_app/core/features/auth/screens/forgot_password_screen.dart';
 import 'package:astro_ai_app/core/features/auth/screens/sign_up_screen.dart';
-import 'package:astro_ai_app/core/features/profile/screens/user_details_form_screen.dart';
+//import 'package:astro_ai_app/core/features/profile/screens/user_details_form_screen.dart';
+import 'package:astro_ai_app/core/features/profile/screens/user_detail_step1.dart';
 import 'package:astro_ai_app/core/constants/api_constants.dart';
 import 'package:astro_ai_app/core/theme/app_colors.dart';
 import 'package:astro_ai_app/core/theme/app_text_style.dart';
@@ -441,7 +442,8 @@ class _LoginScreenState extends State<LoginScreen> {
         if (isNavigate) {
           Navigator.pushReplacement(
             context,
-            MaterialPageRoute(builder: (context) => UserDetailsScreen()),
+            MaterialPageRoute(builder: (context) => UserDetailsStep1()),
+            //MaterialPageRoute(builder: (context) => UserDetailsScreen()),
           );
         }
       }
@@ -450,8 +452,13 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final isTablet = MediaQuery
+        .of(context)
+        .size
+        .shortestSide > 600;
+
     return Scaffold(
-      backgroundColor: AppColors.background,
+      backgroundColor: AppColors.blackWhite(context),
       body: SafeArea(
         child: Stack(
           children: [
@@ -466,7 +473,13 @@ class _LoginScreenState extends State<LoginScreen> {
                       const SizedBox(height: AppSpacing.xxl),
                       Image.asset('assets/logo.png', height: 180),
                       const SizedBox(height: AppSpacing.xl),
-                      const Text("Login", style: AppTextStyles.heading),
+                      Text(
+                          "Login",
+                            style: isTablet ? AppTextStyles.heading.copyWith(
+                            color: AppColors.adaptiveTextColor(context))
+                            : AppTextStyles.heading.copyWith(
+                            color: AppColors.adaptiveTextColor(context)),
+                      ),
                       const SizedBox(height: AppSpacing.lg),
                       TextField(
                         controller: _emailController,
@@ -530,7 +543,11 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                       ),
                       const SizedBox(height: AppSpacing.md),
-                      const Text("Or sign in with", style: AppTextStyles.bodyText16),
+                      Text(
+                          "Or sign in with",
+                          style: isTablet ? AppTextStyles.bodyText16.copyWith(color: AppColors.adaptiveTextColor(context))
+                              : AppTextStyles.bodyText16.copyWith(color: AppColors.adaptiveTextColor(context))
+                      ),
                       const SizedBox(height: AppSpacing.sm),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -558,13 +575,21 @@ class _LoginScreenState extends State<LoginScreen> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          const Text("Don't have an account?", style: AppTextStyles.bodyText16),
+                          Text(
+                              "Don't have an account?",
+                              style: isTablet ? AppTextStyles.bodyText16.copyWith(color: AppColors.adaptiveTextColor(context))
+                                  : AppTextStyles.bodyText16.copyWith(color: AppColors.adaptiveTextColor(context))
+                          ),
                           TextButton(
                             onPressed: () => Navigator.push(
                               context,
                               MaterialPageRoute(builder: (context) => SignUpPage()),
                             ),
-                            child: const Text("Sign up here", style: AppTextStyles.bodyText16),
+                            child: Text(
+                                "Sign up here",
+                                style: isTablet ? AppTextStyles.bodyText16.copyWith(color: AppColors.adaptiveTextColor(context))
+                                    : AppTextStyles.bodyText16.copyWith(color: AppColors.adaptiveTextColor(context))
+                            ),
                           ),
                         ],
                       ),

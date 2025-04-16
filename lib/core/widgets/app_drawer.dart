@@ -14,7 +14,7 @@ class AppDrawer extends StatelessWidget {
         children: [
           DrawerHeader(
             decoration: BoxDecoration(
-              color: AppColors.bhagwa_Saffron,
+              color: AppColors.bhagwaSaffron(context),
             ),
             child: Text(
               'Astro AI',
@@ -24,13 +24,13 @@ class AppDrawer extends StatelessWidget {
           _buildDrawerItem(
             icon: Icons.home,
             title: 'Home',
-            iconColor: AppColors.bhagwa_Saffron,
+            iconColor: AppColors.iconColor(context),
             onTap: () => Navigator.pop(context),
           ),
           _buildDrawerItem(
             icon: Icons.chat,
             title: 'New Chat',
-            iconColor: AppColors.bhagwa_Saffron,
+            iconColor: AppColors.iconColor(context),
             onTap: () => {
                 Navigator.push(
                 context,
@@ -43,7 +43,7 @@ class AppDrawer extends StatelessWidget {
           _buildDrawerItem(
             icon: Icons.star,
             title: 'Horoscope',
-            iconColor: AppColors.bhagwa_Saffron,
+            iconColor: AppColors.iconColor(context),
             onTap: () {
               Navigator.push(
                 context,
@@ -56,32 +56,32 @@ class AppDrawer extends StatelessWidget {
           _buildDrawerItem(
             icon: Icons.language,
             title: 'Change Language',
-            iconColor: AppColors.bhagwa_Saffron,
+            iconColor: AppColors.iconColor(context),
             onTap: () => Navigator.pop(context),
           ),
           Divider(),
           _buildDrawerItem(
             icon: Icons.feedback,
             title: 'Feedback',
-            iconColor: AppColors.bhagwa_Saffron,
+            iconColor: AppColors.iconColor(context),
             onTap: () => Navigator.pop(context),
           ),
           _buildDrawerItem(
             icon: Icons.share,
             title: 'Share App',
-            iconColor: AppColors.bhagwa_Saffron,
+            iconColor: AppColors.iconColor(context),
             onTap: () => Navigator.pop(context),
           ),
           _buildDrawerItem(
             icon: Icons.star_rate,
             title: 'Rate App',
-            iconColor: AppColors.bhagwa_Saffron,
+            iconColor: AppColors.iconColor(context),
             onTap: () => Navigator.pop(context),
           ),
           _buildDrawerItem(
             icon: Icons.info,
             title: 'About Us',
-            iconColor: AppColors.bhagwa_Saffron,
+            iconColor: AppColors.iconColor(context),
             onTap: () => Navigator.push(
               context,
               MaterialPageRoute(
@@ -93,6 +93,7 @@ class AppDrawer extends StatelessWidget {
       ),
     );
   }
+
   Widget _buildDrawerItem({
     required IconData icon,
     required String title,

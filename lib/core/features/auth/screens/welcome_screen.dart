@@ -26,8 +26,13 @@ class _WelcomePageState extends State<WelcomePage> {
   }
   @override
   Widget build(BuildContext context) {
+    final isTablet = MediaQuery
+        .of(context)
+        .size
+        .shortestSide > 600;
+
     return Scaffold(
-      backgroundColor: AppColors.primary,
+      backgroundColor: AppColors.blackWhite(context),
       body: SingleChildScrollView(
         child: Stack(
           children: [
@@ -60,15 +65,21 @@ class _WelcomePageState extends State<WelcomePage> {
                   padding: const EdgeInsets.all(AppSpacing.md),
                   child: Column(
                     children: [
-                      const Text(
+                      Text(
                         'Hello,Welcome to Astro Ai.',
-                        style: AppTextStyles.heading,
+                        style: isTablet ? AppTextStyles.heading.copyWith(
+                            color: AppColors.adaptiveTextColor(context))
+                            : AppTextStyles.heading.copyWith(
+                            color: AppColors.adaptiveTextColor(context)),
                       ),
                       const SizedBox(height: 10),
                       Text(
                         'Astro',
                         textAlign: TextAlign.center,
-                        style: AppTextStyles.bodyText16,
+                        style: isTablet ? AppTextStyles.bodyText16.copyWith(
+                            color: AppColors.adaptiveTextColor(context))
+                            : AppTextStyles.bodyText16.copyWith(
+                            color: AppColors.adaptiveTextColor(context)),
                       ),
                       const SizedBox(height: 20),
                       Row(

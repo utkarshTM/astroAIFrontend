@@ -135,6 +135,10 @@ class _UserDetailsScreenState extends State<UserDetailsScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final isTablet = MediaQuery
+        .of(context)
+        .size
+        .shortestSide > 600;
     return Scaffold(
       appBar: AppBar(title:
         Text(
@@ -144,7 +148,7 @@ class _UserDetailsScreenState extends State<UserDetailsScreen> {
         iconTheme: const IconThemeData(
           color: Colors.white,
         ),
-        backgroundColor: AppColors.bhagwa_Saffron,
+        backgroundColor: AppColors.blackWhite(context),
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.symmetric(horizontal: AppSpacing.lg, vertical: 0),
@@ -165,7 +169,8 @@ class _UserDetailsScreenState extends State<UserDetailsScreen> {
               Center(
                 child: Text(
                   'Share Personal Details',
-                    style: AppTextStyles.heading
+                    style: isTablet ? AppTextStyles.heading.copyWith(color: AppColors.adaptiveTextColor(context))
+                        : AppTextStyles.heading.copyWith(color: AppColors.adaptiveTextColor(context))
                 ),
               ),
 

@@ -325,10 +325,19 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final isTablet = MediaQuery
+        .of(context)
+        .size
+        .shortestSide > 600;
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Reset Password", style: AppTextStyles.appBarTitle),
-        backgroundColor: AppColors.bhagwa_Saffron,
+        title: Text(
+            "Reset Password",
+            style: AppTextStyles.appBarTitle,
+            // style: isTablet ? AppTextStyles.appBarTitle.copyWith(color: AppColors.adaptiveTextColor(context))
+            //     : AppTextStyles.appBarTitle.copyWith(color: AppColors.adaptiveTextColor(context))
+        ),
+        backgroundColor: AppColors.bhagwaSaffron(context),
         iconTheme: const IconThemeData(color: AppColors.primary),
       ),
       body: Stack(
@@ -344,7 +353,11 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                     const SizedBox(height: 50),
                     Image.asset('assets/logo.png', height: 180),
                     const SizedBox(height: 20),
-                    const Text("Enter your new password", style: AppTextStyles.heading),
+                    Text(
+                        "Enter your new password",
+                        style: isTablet ? AppTextStyles.heading.copyWith(color: AppColors.adaptiveTextColor(context))
+                            : AppTextStyles.heading.copyWith(color: AppColors.adaptiveTextColor(context))
+                    ),
                     const SizedBox(height: AppSpacing.lg),
 
                     TextFormField(
@@ -352,7 +365,7 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                       obscureText: _obscurePassword,
                       decoration: InputDecoration(
                         labelText: "New Password",
-                        labelStyle: AppTextStyles.bodyText16,
+                        labelStyle: AppTextStyles.bodyText16.copyWith(color: AppColors.adaptiveTextColor(context)),
                         border: OutlineInputBorder(borderRadius: AppRadius.sm),
                         suffixIcon: IconButton(
                           icon: Icon(
@@ -383,7 +396,7 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                       obscureText: _obscureConfirmPassword,
                       decoration: InputDecoration(
                         labelText: "Confirm Password",
-                        labelStyle: AppTextStyles.bodyText16,
+                        labelStyle: AppTextStyles.bodyText16.copyWith(color: AppColors.adaptiveTextColor(context)),
                         border: OutlineInputBorder(borderRadius: AppRadius.sm),
                         suffixIcon: IconButton(
                           icon: Icon(

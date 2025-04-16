@@ -347,8 +347,13 @@ class _SignUpPageState extends State<SignUpPage> {
 
   @override
   Widget build(BuildContext context) {
+      final isTablet = MediaQuery
+          .of(context)
+          .size
+          .shortestSide > 600;
+
     return Scaffold(
-      backgroundColor: AppColors.background,
+      backgroundColor: AppColors.blackWhite(context),
       body: SafeArea(
         child: Stack(
           children: [
@@ -359,7 +364,13 @@ class _SignUpPageState extends State<SignUpPage> {
                   const SizedBox(height: AppSpacing.xxl),
                   Image.asset('assets/logo.png', height: 180),
                   const SizedBox(height: AppSpacing.xl),
-                  const Text('Create an Account', style: AppTextStyles.heading),
+                  Text(
+                      'Create an Account',
+                        style: isTablet ? AppTextStyles.heading.copyWith(
+                        color: AppColors.adaptiveTextColor(context))
+                        : AppTextStyles.heading.copyWith(
+                        color: AppColors.adaptiveTextColor(context)),
+                  ),
                   const SizedBox(height: AppSpacing.lg),
                   Form(
                     key: _formKey,
@@ -436,7 +447,11 @@ class _SignUpPageState extends State<SignUpPage> {
                           ),
                         ),
                         const SizedBox(height: AppSpacing.lg),
-                        const Text("Or sign up with", style: AppTextStyles.bodyText16),
+                        Text(
+                            "Or sign up with",
+                            style: isTablet ? AppTextStyles.bodyText16.copyWith(color: AppColors.adaptiveTextColor(context))
+                                : AppTextStyles.bodyText16.copyWith(color: AppColors.adaptiveTextColor(context))
+                        ),
                         const SizedBox(height: AppSpacing.sm),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
@@ -464,13 +479,20 @@ class _SignUpPageState extends State<SignUpPage> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            const Text("Already have an account?", style: AppTextStyles.bodyText16),
+                            Text("Already have an account?",
+                                style: isTablet ? AppTextStyles.bodyText16.copyWith(color: AppColors.adaptiveTextColor(context))
+                                    : AppTextStyles.bodyText16.copyWith(color: AppColors.adaptiveTextColor(context))
+                            ),
                             TextButton(
                               onPressed: () => Navigator.push(
                                 context,
                                 MaterialPageRoute(builder: (context) => LoginScreen()),
                               ),
-                              child: const Text('Sign in here', style: AppTextStyles.bodyText16),
+                              child: Text(
+                                  'Sign in here',
+                                  style: isTablet ? AppTextStyles.bodyText16.copyWith(color: AppColors.adaptiveTextColor(context))
+                                      : AppTextStyles.bodyText16.copyWith(color: AppColors.adaptiveTextColor(context))
+                              ),
                             ),
                           ],
                         ),

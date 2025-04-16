@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:astro_ai_app/core/theme/app_colors.dart';
 
 class AstroChatWidget extends StatefulWidget {
   final String botName;
@@ -65,8 +66,8 @@ class _AstroChatWidgetState extends State<AstroChatWidget> {
         padding: const EdgeInsets.all(12),
         constraints: BoxConstraints(maxWidth: MediaQuery.of(context).size.width * 0.75),
         decoration: BoxDecoration(
-          color: isUser ? Colors.deepPurple[400] : Colors.white,
-          borderRadius: BorderRadius.circular(16),
+          color: isUser ? AppColors.bhagwa_Saffron : Colors.white,
+          borderRadius: BorderRadius.circular(10),
           boxShadow: [
             BoxShadow(
               color: Colors.black12,
@@ -88,9 +89,19 @@ class _AstroChatWidgetState extends State<AstroChatWidget> {
     final isTablet = MediaQuery.of(context).size.width > 600;
 
     return Container(
-      decoration: const BoxDecoration(
+      // decoration:  BoxDecoration(
+      //   gradient: LinearGradient(
+      //     //colors: [Color(0xFFF3E5F5), Color(0xFFFFF8E1)],
+      //     colors: [Color(0xFFFFFFFF),Color(0xFFE3F2FD)],
+      //     begin: Alignment.topLeft,
+      //     end: Alignment.bottomRight,
+      //   ),
+      // ),
+      decoration: BoxDecoration(
         gradient: LinearGradient(
-          colors: [Color(0xFFF3E5F5), Color(0xFFFFF8E1)],
+          colors: Theme.of(context).brightness == Brightness.dark
+              ? [Color(0xFF1E1E2C), Color(0xFF2C2C3E)]  // Dark Mode Gradient
+              : [Color(0xFFFFFFFF), Color(0xFFE3F2FD)], // Light Mode Gradient
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
         ),
@@ -100,9 +111,15 @@ class _AstroChatWidgetState extends State<AstroChatWidget> {
           // Header
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-            color: Colors.white,
+            color: AppColors.bhagwaSaffron(context),
             child: Row(
               children: [
+                IconButton(
+                  icon: Icon(Icons.arrow_back, color: Colors.white),
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                ),
                 CircleAvatar(
                   backgroundImage: AssetImage(widget.avatarAsset),
                   radius: isTablet ? 28 : 20,
@@ -111,17 +128,20 @@ class _AstroChatWidgetState extends State<AstroChatWidget> {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(widget.botName,
+                    Text(
+                        widget.botName,
                         style: TextStyle(
                           fontSize: isTablet ? 20 : 16,
                           fontWeight: FontWeight.bold,
-                          color: Colors.black,
+                          color: Colors.white,
                         )),
                     Text('Online ✨',
                         style: TextStyle(
                           fontSize: isTablet ? 14 : 12,
-                          color: Colors.grey[600],
-                        )),
+                          color: Colors.white
+                         // color: Colors.grey[600],
+                        )
+                    ),
                   ],
                 ),
               ],
@@ -148,11 +168,17 @@ class _AstroChatWidgetState extends State<AstroChatWidget> {
                     onSubmitted: (_) => _sendMessage(),
                     decoration: InputDecoration(
                       hintText: 'Ask about your future...',
+                      hintStyle: TextStyle(
+                        color: Colors.black
+                        // color: Theme.of(context).brightness == Brightness.dark
+                        //     ? Colors.white
+                        //     : Colors.black,
+                      ),
                       filled: true,
                       fillColor: Colors.white,
                       contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
                       border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(30),
+                        borderRadius: BorderRadius.circular(15),
                         borderSide: BorderSide.none,
                       ),
                     ),
@@ -162,9 +188,9 @@ class _AstroChatWidgetState extends State<AstroChatWidget> {
                 GestureDetector(
                   onTap: _sendMessage,
                   child: CircleAvatar(
-                    backgroundColor: Colors.deepPurple,
-                    radius: isTablet ? 26 : 22,
-                    child: const Icon(Icons.send, color: Colors.white),
+                    backgroundColor: AppColors.blackWhite(context),
+                    radius: isTablet ? 26 : 27,
+                    child: const Icon(Icons.send, color: AppColors.bhagwa_Saffron),
                   ),
                 ),
               ],

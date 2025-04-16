@@ -7,7 +7,10 @@ class AboutUsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final isTablet = MediaQuery.of(context).size.shortestSide > 600;
+    final isTablet = MediaQuery
+        .of(context)
+        .size
+        .shortestSide > 600;
 
     return Scaffold(
       appBar: AppBar(
@@ -18,7 +21,7 @@ class AboutUsScreen extends StatelessWidget {
         iconTheme: const IconThemeData(
           color: Colors.white,
         ),
-        backgroundColor: AppColors.bhagwa_Saffron,
+        backgroundColor: AppColors.bhagwaSaffron(context),
         //iconTheme: const IconThemeData(color: AppColors.textLight),
       ),
       body: SingleChildScrollView(
@@ -38,31 +41,49 @@ class AboutUsScreen extends StatelessWidget {
               child: Text(
                 'Welcome to Astro AI',
                 style: isTablet
-                    ? AppTextStyles.heading.copyWith(fontSize: 24)
-                    : AppTextStyles.heading,
+                    ? AppTextStyles.heading.copyWith(
+                  fontSize: 24,
+                  color: AppColors.adaptiveTextColor(context),
+                ) : AppTextStyles.heading.copyWith(
+                  color: AppColors.adaptiveTextColor(context),
+                ),
               ),
             ),
             const SizedBox(height: 16),
             Text(
               'Astro AI is your personal AI-powered astrologer. Our goal is to provide users with deep astrological insights using modern technology and ancient wisdom. We combine machine learning and astrology to help guide you in areas such as love, career, health, and more.',
               textAlign: TextAlign.justify,
-              style: isTablet ? AppTextStyles.bodyText16 : AppTextStyles.bodyText16,
+              style: isTablet ? AppTextStyles.bodyText16.copyWith(
+                  color: AppColors.adaptiveTextColor(context)
+              ) : AppTextStyles.bodyText16.copyWith(
+                  color: AppColors.adaptiveTextColor(context)
+              ),
             ),
             const SizedBox(height: 16),
             Text(
               'What We Offer:',
-              style: isTablet ? AppTextStyles.heading : AppTextStyles.heading,
+              style: isTablet ? AppTextStyles.subHeading.copyWith(
+                  color: AppColors.adaptiveTextColor(context))
+                  : AppTextStyles.subHeading.copyWith(
+                  color: AppColors.adaptiveTextColor(context)),
             ),
             const SizedBox(height: 10),
-            _buildBulletPoint('AI-powered astrological chat assistance.'),
-            _buildBulletPoint('Daily horoscopes and personalized readings.'),
-            _buildBulletPoint('Real-time kundli and birth chart analysis.'),
-            _buildBulletPoint('User-friendly, clean, and secure interface.'),
+            _buildBulletPoint(
+                context, 'AI-powered astrological chat assistance.'),
+            _buildBulletPoint(
+                context, 'Daily horoscopes and personalized readings.'),
+            _buildBulletPoint(
+                context, 'Real-time kundli and birth chart analysis.'),
+            _buildBulletPoint(
+                context, 'User-friendly, clean, and secure interface.'),
             const SizedBox(height: 20),
             Text(
               'Our mission is to bridge the gap between traditional astrology and modern technology to empower individuals in understanding their cosmic path.',
               textAlign: TextAlign.justify,
-              style: isTablet ? AppTextStyles.bodyText16 : AppTextStyles.bodyText16,
+              style: isTablet ? AppTextStyles.bodyText16.copyWith(
+                  color: AppColors.adaptiveTextColor(context))
+                  : AppTextStyles.bodyText16.copyWith(
+                  color: AppColors.adaptiveTextColor(context)),
             ),
             const SizedBox(height: 30),
             Center(
@@ -81,17 +102,26 @@ class AboutUsScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildBulletPoint(String text) {
+  Widget _buildBulletPoint(BuildContext context, String text) {
     return Padding(
       padding: const EdgeInsets.only(bottom: 8),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text('• ', style: TextStyle(fontSize: 18)),
+          Text(
+            '• ',
+            style: TextStyle(
+              fontSize: 18,
+              color: AppColors.adaptiveTextColor(context),
+            ),
+          ),
           Expanded(
             child: Text(
               text,
-              style: AppTextStyles.bodyText16.copyWith(height: 1.4),
+              style: AppTextStyles.bodyText16.copyWith(
+                height: 1.4,
+                color: AppColors.adaptiveTextColor(context),
+              ),
             ),
           ),
         ],

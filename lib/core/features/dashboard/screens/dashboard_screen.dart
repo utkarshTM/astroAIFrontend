@@ -59,8 +59,8 @@ class _DashboardScreenState extends State<DashboardScreen> {
     final isTablet = MediaQuery.of(context).size.shortestSide > 600;
 
     return Scaffold(
-      backgroundColor: AppColors.primary,
-      //backgroundColor: AppColors.bhagwaSaffron(context),
+      //backgroundColor: AppColors.primary,
+      backgroundColor: AppColors.blackWhite(context),
       appBar: AppHeader(),
       drawer: AppDrawer(),
       body: SafeArea(
@@ -73,7 +73,11 @@ class _DashboardScreenState extends State<DashboardScreen> {
               SizedBox(height: isTablet ? 12 : 8),
               Text(
                 'The universe has aligned to bring you here today',
-                style: AppTextStyles.bodyText16,
+                style: AppTextStyles.bodyText16.copyWith(
+                  color: Theme.of(context).brightness == Brightness.dark
+                      ? Colors.white
+                      : Colors.black,
+                ),
               ),
               SizedBox(height: isTablet ? 28 : 24),
               _buildFeatureGrid(isTablet),
@@ -97,7 +101,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
         style: TextStyle(
           fontSize: isTablet ? 28 : 24,
           fontWeight: FontWeight.bold,
-          color: AppColors.bhagwa_Saffron,
+          color: AppColors.iconColor(context),
         ),
         children: [
           TextSpan(text: _greeting),

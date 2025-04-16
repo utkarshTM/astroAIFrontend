@@ -50,7 +50,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
           color: Colors.white,
         ),
         centerTitle: true,
-        backgroundColor: AppColors.bhagwa_Saffron,
+        backgroundColor: AppColors.bhagwaSaffron(context),
       ),
       body: notifications.isEmpty
           ? const Center(child: Text('No notifications yet 🌌'))

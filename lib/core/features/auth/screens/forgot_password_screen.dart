@@ -647,11 +647,14 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
 
   @override
   Widget build(BuildContext context) {
-    //Color displayColor = Colors.red;
+    final isTablet = MediaQuery
+        .of(context)
+        .size
+        .shortestSide > 600;
     return Scaffold(
       appBar: AppBar(
         title: Text("Forgot Password", style: AppTextStyles.appBarTitle),
-        backgroundColor: AppColors.bhagwa_Saffron,
+        backgroundColor: AppColors.bhagwaSaffron(context),
         iconTheme: const IconThemeData(color: Colors.white),
       ),
       body: Stack(
@@ -668,7 +671,11 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                     SizedBox(height: 60),
                     Image.asset('assets/logo.png', height: 200),
                     SizedBox(height: 20),
-                    Text("Enter your email", style: AppTextStyles.heading),
+                    Text(
+                        "Enter your email",
+                        style: isTablet ? AppTextStyles.heading.copyWith(color: AppColors.adaptiveTextColor(context))
+                            : AppTextStyles.heading.copyWith(color: AppColors.adaptiveTextColor(context))
+                    ),
                     SizedBox(height: 40),
                     TextFormField(
                       controller: _emailController,
