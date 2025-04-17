@@ -163,7 +163,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'core/features/auth/screens/welcome_screen.dart';
-import 'core/theme/theme_provider.dart';  // Import your ThemeProvider
+import 'core/theme/theme_provider.dart';
 
 void main() {
   runApp(

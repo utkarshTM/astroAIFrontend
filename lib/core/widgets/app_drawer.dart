@@ -3,9 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:astro_ai_app/core/features/About/screens/about_screen.dart';
 import 'package:astro_ai_app/core/features/chatWithAi/screens/chat_screen.dart';
 import 'package:astro_ai_app/core/theme/app_colors.dart';
-import 'package:astro_ai_app/core/theme/app_text_style.dart';
+//import 'package:astro_ai_app/core/theme/app_text_style.dart';
+import 'package:astro_ai_app/core/features/feedback/feedback_screen.dart';
 
 class AppDrawer extends StatelessWidget {
+  const AppDrawer({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Drawer(
@@ -16,9 +19,20 @@ class AppDrawer extends StatelessWidget {
             decoration: BoxDecoration(
               color: AppColors.bhagwaSaffron(context),
             ),
-            child: Text(
-              'Astro AI',
-                style: AppTextStyles.appBarTitle,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Image.asset( 'assets/light_logo.png',  height: 120),
+                // Image.asset(
+                //   'assets/logo2.png',
+                //   height: 120,  // adjust the size as you like
+                // ),
+                // const SizedBox(height: 2),
+                // Text(
+                //   'Astro AI',
+                //   style: AppTextStyles.appBarTitle,
+                // ),
+              ],
             ),
           ),
           _buildDrawerItem(
@@ -64,7 +78,14 @@ class AppDrawer extends StatelessWidget {
             icon: Icons.feedback,
             title: 'Feedback',
             iconColor: AppColors.iconColor(context),
-            onTap: () => Navigator.pop(context),
+            onTap: () => {
+                Navigator.push(
+                context,
+                MaterialPageRoute(
+                builder: (context) => const FeedbackScreen(),
+                ),
+              ),
+            },
           ),
           _buildDrawerItem(
             icon: Icons.share,

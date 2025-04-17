@@ -32,26 +32,23 @@ class _NotificationScreenState extends State<NotificationScreen> {
       'isRead': false,
     },
   ];
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+
       appBar: AppBar(
+        automaticallyImplyLeading: true,
+        centerTitle: true,
         title: const Text(
           'Notifications',
-            // style: TextStyle(
-            //   color: Colors.white,
-            //   fontWeight: FontWeight.w500,
-            //   fontSize: 22,
-            // ),
            style: AppTextStyles.appBarTitle,
         ),
         iconTheme: const IconThemeData(
           color: Colors.white,
         ),
-        centerTitle: true,
         backgroundColor: AppColors.bhagwaSaffron(context),
       ),
+
       body: notifications.isEmpty
           ? const Center(child: Text('No notifications yet 🌌'))
           : ListView.separated(

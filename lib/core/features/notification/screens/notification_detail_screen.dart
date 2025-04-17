@@ -18,12 +18,22 @@ class NotificationDetailScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text(
-            'Notification Detail',
-          style: AppTextStyles.appBarTitle,
-        ),
-        iconTheme: const IconThemeData(
-          color: Colors.white,
+        automaticallyImplyLeading: false,  // Disable default back button spacing
+        titleSpacing: 0,   // Remove default padding
+        title: Row(
+          children: [
+            IconButton(
+              icon: const Icon(Icons.arrow_back),
+              color: Colors.white,
+              onPressed: () {
+                Navigator.pop(context);
+              },
+            ),
+            const Text(
+              'Notifications Detail',
+              style: AppTextStyles.appBarTitle,
+            ),
+          ],
         ),
         backgroundColor: AppColors.bhagwaSaffron(context),
       ),

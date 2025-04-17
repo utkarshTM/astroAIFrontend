@@ -47,4 +47,20 @@ class AppTextStyles {
     color: Colors.white,
     fontWeight: FontWeight.w600,
   );
+
+  static const fieldLabel = TextStyle(
+    fontSize: 14,
+    fontWeight: FontWeight.w600,
+    color: Colors.black,
+  );
+
+  static const successMessage = TextStyle(
+    color: Colors.green,
+    fontSize: 14,
+  );
+
+  // static const errorMessage = TextStyle(
+  //   color: Colors.red,
+  //   fontSize: 14,
+  // );
 }

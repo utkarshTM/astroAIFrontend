@@ -221,16 +221,37 @@ class _EditUserDetailsScreenState extends State<EditUserDetailsScreen> {
     return Scaffold(
       //backgroundColor: AppColors.background,
       backgroundColor: AppColors.blackWhite(context),
+      // appBar: AppBar(
+      //   title: Text(
+      //       "Edit Profile",
+      //       style: AppTextStyles.appBarTitle
+      //   ),
+      //   iconTheme: const IconThemeData(
+      //     color: Colors.white,
+      //   ),
+      //   backgroundColor: AppColors.bhagwaSaffron(context),
+      // ),
       appBar: AppBar(
-        title: Text(
-            "Edit Profile",
-            style: AppTextStyles.appBarTitle
-        ),
-        iconTheme: const IconThemeData(
-          color: Colors.white,
+        automaticallyImplyLeading: false,  // disable default back button spacing
+        titleSpacing: 0,                   // remove default padding
+        title: Row(
+          children: [
+            IconButton(
+              icon: const Icon(Icons.arrow_back),
+              color: Colors.white,
+              onPressed: () {
+                Navigator.pop(context);
+              },
+            ),
+            const Text(
+              'Edit Profile',
+              style: AppTextStyles.appBarTitle,
+            ),
+          ],
         ),
         backgroundColor: AppColors.bhagwaSaffron(context),
       ),
+
       body: _isLoading
           ? const Center(child: CircularProgressIndicator())
           : _errorMessage != null
@@ -264,7 +285,7 @@ class _EditUserDetailsScreenState extends State<EditUserDetailsScreen> {
           child: Column(
             children: [
               SizedBox(height: 20),
-              Image.asset('assets/logo.png', height: 150, fit: BoxFit.contain),
+              Image.asset('assets/dark_logo.png', height: 150, fit: BoxFit.contain),
               const SizedBox(height: 20),
               // Name
               TextFormField(
@@ -392,6 +413,7 @@ class _EditUserDetailsScreenState extends State<EditUserDetailsScreen> {
                   ),
                 ),
               ),
+              const SizedBox(height: 16),
             ],
           ),
         ),

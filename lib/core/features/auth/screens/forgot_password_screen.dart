@@ -344,21 +344,6 @@
 // }
 //
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 //<!******************************| Get Otp On Phone Number Functionality |***********************************!>
 
 // import 'package:flutter/material.dart';
@@ -552,7 +537,10 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
         _startResendTimer();
         _showTimedMessage("OTP sent to your email!", isError: false);
       } else {
-        _showTimedMessage(responseData["error"]?["message"] ?? "Request failed. Please try again.");
+        _showTimedMessage(
+          responseData["error"]?["message"] ??
+              "Request failed. Please try again.",
+        );
       }
     } catch (e) {
       _showTimedMessage("Error: $e");
@@ -585,7 +573,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
         body: jsonEncode({
           "email": _emailController.text.trim(),
           "code": int.tryParse(_otpCode!) ?? 0,
-          "type": "reset-password"
+          "type": "reset-password",
         }),
       );
 
@@ -647,10 +635,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final isTablet = MediaQuery
-        .of(context)
-        .size
-        .shortestSide > 600;
+    final isTablet = MediaQuery.of(context).size.shortestSide > 600;
     return Scaffold(
       appBar: AppBar(
         title: Text("Forgot Password", style: AppTextStyles.appBarTitle),
@@ -672,20 +657,33 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                     Image.asset('assets/logo.png', height: 200),
                     SizedBox(height: 20),
                     Text(
-                        "Enter your email",
-                        style: isTablet ? AppTextStyles.heading.copyWith(color: AppColors.adaptiveTextColor(context))
-                            : AppTextStyles.heading.copyWith(color: AppColors.adaptiveTextColor(context))
+                      "Enter your email",
+                      style:
+                          isTablet
+                              ? AppTextStyles.heading.copyWith(
+                                color: AppColors.adaptiveTextColor(context),
+                              )
+                              : AppTextStyles.heading.copyWith(
+                                color: AppColors.adaptiveTextColor(context),
+                              ),
                     ),
                     SizedBox(height: 40),
                     TextFormField(
                       controller: _emailController,
                       decoration: InputDecoration(
                         labelText: "Email",
-                        prefixIcon: Icon(Icons.email, color: AppColors.bhagwa_Saffron),
+                        prefixIcon: Icon(
+                          Icons.email,
+                          color: AppColors.bhagwa_Saffron,
+                        ),
                         border: OutlineInputBorder(borderRadius: AppRadius.sm),
                       ),
                       keyboardType: TextInputType.emailAddress,
-                      validator: (value) => value == null || value.isEmpty ? 'Please enter your email' : null,
+                      validator:
+                          (value) =>
+                              value == null || value.isEmpty
+                                  ? 'Please enter your email'
+                                  : null,
                     ),
                     SizedBox(height: 50),
 
@@ -693,12 +691,17 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                       SizedBox(
                         width: double.infinity,
                         child: ElevatedButton(
-                          onPressed: _isLoading ? null : _sendForgotPasswordRequest,
+                          onPressed:
+                              _isLoading ? null : _sendForgotPasswordRequest,
                           style: AppButtonStyle.primary,
-                          child: _isLoading
-                              ? CircularProgressIndicator()
-                              : Text("SEND OTP", style: AppTextStyles.btnText),
-                           // AppTextStyles.bodyText15
+                          child:
+                              _isLoading
+                                  ? CircularProgressIndicator()
+                                  : Text(
+                                    "SEND OTP",
+                                    style: AppTextStyles.btnText,
+                                  ),
+                          // AppTextStyles.bodyText15
                         ),
                       ),
 
@@ -711,13 +714,16 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                           Expanded(
                             child: TextField(
                               keyboardType: TextInputType.number,
-                              onChanged: (value) => setState(() {
-                                _otpCode = value;
-                                _otpErrorMessage = null;
-                              }),
+                              onChanged:
+                                  (value) => setState(() {
+                                    _otpCode = value;
+                                    _otpErrorMessage = null;
+                                  }),
                               decoration: InputDecoration(
                                 labelText: "OTP",
-                                border: OutlineInputBorder(borderRadius: AppRadius.sm),
+                                border: OutlineInputBorder(
+                                  borderRadius: AppRadius.sm,
+                                ),
                                 errorText: _otpErrorMessage,
                               ),
                             ),
@@ -728,13 +734,24 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                             children: [
                               ElevatedButton(
                                 style: AppButtonStyle.small,
-                                onPressed: _isResendDisabled ? null : _sendForgotPasswordRequest,
-                                child: Text("Resend OTP", style: AppTextStyles.btnText),
+                                onPressed:
+                                    _isResendDisabled
+                                        ? null
+                                        : _sendForgotPasswordRequest,
+                                child: Text(
+                                  "Resend OTP",
+                                  style: AppTextStyles.btnText,
+                                ),
                               ),
                               if (_isResendDisabled)
                                 Padding(
                                   padding: const EdgeInsets.only(top: 8),
-                                  child: Text("Wait $_resendTimer sec", style: TextStyle(color: AppColors.bhagwa_Saffron)),
+                                  child: Text(
+                                    "Wait $_resendTimer sec",
+                                    style: TextStyle(
+                                      color: AppColors.bhagwa_Saffron,
+                                    ),
+                                  ),
                                 ),
                             ],
                           ),
@@ -746,9 +763,13 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                         child: ElevatedButton(
                           style: AppButtonStyle.primary,
                           onPressed: _isLoading ? null : _verifyOtp,
-                          child: _isLoading
-                              ? CircularProgressIndicator()
-                              : Text("Verify OTP", style: AppTextStyles.btnText),
+                          child:
+                              _isLoading
+                                  ? CircularProgressIndicator()
+                                  : Text(
+                                    "Verify OTP",
+                                    style: AppTextStyles.btnText,
+                                  ),
                         ),
                       ),
                     ],
@@ -764,9 +785,16 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
               left: 20,
               right: 20,
               child: Container(
-                padding: const EdgeInsets.symmetric(vertical: AppSpacing.xs2, horizontal: AppSpacing.sm3),
+                padding: const EdgeInsets.symmetric(
+                  vertical: AppSpacing.xs2,
+                  horizontal: AppSpacing.sm3,
+                ),
                 decoration: BoxDecoration(
-                  color: _generalMessage!.contains("Error") || _generalMessage!.contains("fail") ? Colors.red : Colors.green,
+                  color:
+                      _generalMessage!.contains("Error") ||
+                              _generalMessage!.contains("fail")
+                          ? Colors.red
+                          : Colors.green,
                   borderRadius: AppRadius.sm2,
                 ),
                 child: Text(
@@ -776,10 +804,8 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                 ),
               ),
             ),
-
         ],
       ),
     );
   }
 }
-
